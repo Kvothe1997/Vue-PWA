@@ -1,26 +1,202 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Welcome to Your Vue.js App" />
+  <CardWithModal
+    title="Panqueques"
+    imageUrl="panqueques.webp"
+    imageAlt="Panqueques"
+    recetaUrl="./recetas/Panqueques.html"
+  />
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
+import CardWithModal from "./components/CardWithModal.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld
-  }
+    HelloWorld,
+    CardWithModal,
+  },
 };
 </script>
 
 <style>
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: white;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex: 1 0 auto;
+}
+header > h1 {
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-size: 4rem;
+  font-weight: bolder;
+  background-color: black;
+  color: #5688ba;
+  padding: 0.01rem 0.01rem;
+}
+
+footer {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 10px;
+  background-color: #5688ba;
+  color: black;
+  font-weight: bolder;
+}
+footer > div {
+  background: #5688ba;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+footer > div > aside {
+  background: #5688ba;
+  flex-basis: 40%;
+  flex-grow: 1;
+  min-width: 300px;
+  margin: 0.5rem;
+}
+footer > div > aside > h2 {
+  background: #5688ba;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+footer > div > aside > p {
+  background: #5688ba;
+  font-size: 1rem;
+}
+footer > div > div {
+  background: #5688ba;
+  flex-basis: 40%;
+  flex-grow: 1;
+  min-width: 300px;
+  margin: 0.5rem;
+}
+footer > div > div > a {
+  text-decoration: none;
+  background: #5688ba;
+  margin: 1rem;
+  align-self: right;
+}
+footer > div > div > a > img {
+  width: 2rem;
+  background: #5688ba;
+}
+footer > p {
+  background: #5688ba;
+  font-size: 1.3rem;
+}
+@media (min-width: 500px) {
+  footer > div > aside > h2 {
+    font-size: 1rem;
+  }
+  footer > div > aside > p {
+    font-size: 0.75rem;
+  }
+  footer > div > div > a > img {
+    width: 1.5rem;
+  }
+  footer > p {
+    font-size: 1rem;
+  }
 }
 </style>

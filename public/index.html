@@ -1,17 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="./favicon.svg" sizes="any" type="image/svg+xml" />
+    <title>Las recetas de Lita</title>
+    <meta
+      name="description"
+      content="Postres y pan hechos en casa. Recetas comunes y cómo puedes hacerlas realidad en casa paso a paso..."
+    />
+    <meta
+      name="keywords"
+      content="recetas caseras, postre, pan, torta, dulces, panqueques, pie, queque "
+    />
+    <meta name="author" content="Luis Enrique Barreto Periche" />
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong
+        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+        properly without JavaScript enabled. Please enable it to
+        continue.</strong
+      >
     </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
+    <div class="content">
+      <header>
+        <h1>Las<wbr /> recetas de <wbr />Lita</h1>
+      </header>
+      <div id="app"></div>
+      <!-- built files will be auto injected -->
+    </div>
+    <footer>
+      <div>
+        <aside>
+          <h2>Nota del desarrollador</h2>
+          <p>
+            Esta PWA es mi primera página vez utilizando Vue.js.
+          </p>
+        </aside>
+        <div>
+          <a
+            class="facebook"
+            href="https://www.facebook.com/Luis.Barrreto"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><img
+              src="./img/mediaIcons/facebook.svg"
+              alt="Agrégame en Facebook."
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/luis-enrique-barreto-periche-2102223b/"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><img
+              src="./img/mediaIcons/linkedin.svg"
+              alt="Agrégame en LinkedIN"
+            />
+          </a>
+          <a
+            href="https://api.whatsapp.com/send?phone=51964561893&text=!Hola,%20Luis%20Barreto!%20%C2%BFQu%C3%A9%20tal?"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><img
+              src="./img/mediaIcons/whatsapp.svg"
+              alt="Contáctame en whatsapp"
+            />
+          </a>
+          <a
+            href="https://github.com/Kvothe1997"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><img src="./img/mediaIcons/github.svg" alt="Sígueme en GitHub" />
+          </a>
+          <a
+            href="https://www.instagram.com/barreto0608/?hl=es-la"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><img
+              src="./img/mediaIcons/instagram.svg"
+              alt="Sígueme en Instagram"
+            />
+          </a>
+        </div>
+      </div>
+      <p>
+        &copy;2020 Luis Enrique Barreto Periche
+      </p>
+    </footer>
   </body>
 </html>
