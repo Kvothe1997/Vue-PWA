@@ -9,13 +9,11 @@
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
 import CardWithModal from "./components/CardWithModal.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
     CardWithModal
   }
 };
