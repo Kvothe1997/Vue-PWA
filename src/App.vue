@@ -6,6 +6,7 @@
     imageAlt="Panqueques"
     recetaUrl="./recetas/Panqueques.html"
   />
+  <!-- https://css-tricks.com/first-steps-into-a-possible-css-masonry-layout/ -->
 </template>
 
 <script>
@@ -16,12 +17,13 @@ export default {
   name: "App",
   components: {
     HelloWorld,
-    CardWithModal,
-  },
+    CardWithModal
+  }
 };
 </script>
 
 <style>
+/* Revisar si se vuelve a poner el background white luego de terminar todo. */
 html,
 body,
 div,
@@ -109,7 +111,6 @@ video,
   border: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: white;
   font-size: 100%;
   vertical-align: baseline;
 }
