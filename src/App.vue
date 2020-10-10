@@ -1,5 +1,4 @@
 <template>
-  <HelloWorld msg="Welcome to Your Vue.js App" />
   <CardWithModal
     title="Panqueques"
     imageUrl="panqueques.webp"
