@@ -1,1 +1,1 @@
-# lasrecetasdelita
+# Vue PWA
