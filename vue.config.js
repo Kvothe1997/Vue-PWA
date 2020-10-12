@@ -10,8 +10,8 @@ module.exports = {
         src: "./favicon.svg",
         sizes: "512x512",
         type: "image/svg+xml",
-        purpose: "any maskable",
-      },
+        purpose: "any maskable"
+      }
     },
 
     themeColor: "#4DBA87",
@@ -23,9 +23,9 @@ module.exports = {
       favicon32: "./favicon.svg",
       favicon16: "./favicon.svg",
       appleTouchIcon: null,
-      msTileImage: null,
+      msTileImage: null
     },
     // configure the workbox plugin
-    workboxPluginMode: "GenerateSW",
-  },
+    workboxPluginMode: "GenerateSW"
+  }
 };

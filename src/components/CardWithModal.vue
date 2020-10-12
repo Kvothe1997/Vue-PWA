@@ -1,9 +1,11 @@
 <template>
   <!-- Card -->
-  <article @click="openModal">
-    <h1>{{ title }}</h1>
-    <img :src="require(`../assets/Images/${imageUrl}`)" :alt="imageAlt" />
-  </article>
+  <div class="protection">
+    <article @click="openModal">
+      <h1>{{ title }}</h1>
+      <img :src="require(`../assets/Images/${imageUrl}`)" :alt="imageAlt" />
+    </article>
+  </div>
 
   <!-- Modal ... -->
   <transition name="modal">
@@ -92,8 +94,21 @@ export default {
 </script>
 
 <style scoped>
+/* --- Masonry: Multicolumn --- */
+.protection {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  -webkit-column-break-inside: avoid-column;
+  page-break-inside: avoid-column;
+  break-inside: avoid-column;
+}
+@media (min-width: 500px) {
+  .protection {
+    margin-bottom: 1rem;
+  }
+}
+/* ----- */
 article {
-  margin: 15px 0px;
   vertical-align: middle;
   border-radius: 5px 5px 5px 5px;
   box-shadow: 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -151,7 +166,7 @@ article > img {
   overflow: auto; /*Enable scroll if needed*/
   box-shadow: 0px 0px 5px #5688ba;
 }
-
+/* Vue transition functionality */
 .modal-enter {
   opacity: 0;
 }
@@ -363,9 +378,6 @@ article > img {
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 1rem;
-}
-.modalContent >>> p:first-child {
-  /* margin-bottom: 100rem; */
 }
 .modalContent >>> p > a {
   text-decoration: none;

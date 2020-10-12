@@ -1,9 +1,12 @@
 <template>
   <CardWithModal
-    title="Panqueques"
-    imageUrl="panqueques.webp"
-    imageAlt="Panqueques"
-    recetaUrl="./recetas/Panqueques.html"
+    class="card"
+    v-for="(Receta, index) in Recetas"
+    :key="index"
+    :title="Receta.title"
+    :imageUrl="Receta.imageUrl"
+    :imageAlt="Receta.imageAlt"
+    :recetaUrl="Receta.recetaUrl"
   />
   <!-- https://css-tricks.com/first-steps-into-a-possible-css-masonry-layout/ -->
 </template>
@@ -13,6 +16,18 @@ import CardWithModal from "./components/CardWithModal.vue";
 
 export default {
   name: "App",
+  data() {
+    return {
+      Recetas: [
+        {
+          title: "Panqueques",
+          imageUrl: "panqueques.webp",
+          imageAlt: "Panqueques caseros sobre un plato blanco.",
+          recetaUrl: "./recetas/Panqueques.html"
+        }
+      ]
+    };
+  },
   components: {
     CardWithModal
   }
@@ -130,7 +145,19 @@ header > h1 {
   color: #5688ba;
   padding: 0.01rem 0.01rem;
 }
-
+/* --- Masonry: Multicolumn --- */
+#app {
+  margin: 1rem;
+  display: inline-block;
+  gap: 1rem;
+  columns: 1;
+}
+@media (min-width: 500px) {
+  #app {
+    columns: 10rem;
+  }
+}
+/* --- */
 footer {
   flex-shrink: 0;
   text-align: center;
