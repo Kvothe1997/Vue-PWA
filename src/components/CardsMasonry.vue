@@ -1,7 +1,7 @@
 <template>
   <div class="cards-container">
     <CardWithModal
-      v-for="Receta in Recetas"
+      v-for="Receta in RecetasFiltradas"
       :key="Receta.title"
       :title="Receta.title"
       :imageUrl="Receta.imageUrl"
@@ -71,6 +71,15 @@ export default {
   name: "CardsMasonry",
   components: {
     CardWithModal
+  },
+  computed: {
+    RecetasFiltradas() {
+      return this.Recetas.filter(receta => {
+        return receta.title
+          .toLowerCase()
+          .includes(this.$store.state.buscar.toLowerCase());
+      });
+    }
   }
 };
 </script>

@@ -3,16 +3,20 @@
   <nav>
     <ul>
       <MedidasEquivalencias />
+      <SearchFilter />
     </ul>
   </nav>
 </template>
 
 <script>
 import MedidasEquivalencias from "./MedidasEquivalencias.vue";
+import SearchFilter from "./SearchFilter.vue";
+
 export default {
   name: "NavigationBar",
   components: {
-    MedidasEquivalencias
+    MedidasEquivalencias,
+    SearchFilter
   }
 };
 </script>
@@ -21,9 +25,7 @@ export default {
 /*---- ul of Nav style -----*/
 nav > ul {
   display: flex;
-  flex-direction: row;
   background-color: #5688ba;
-  justify-content: left;
   list-style-type: none;
   padding: 0.25rem;
 }
