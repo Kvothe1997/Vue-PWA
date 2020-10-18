@@ -6,6 +6,7 @@
 <script>
 import CardsMasonry from "./components/CardsMasonry.vue";
 import NavigationBar from "./components/NavigationBar.vue";
+
 export default {
   name: "App",
   components: {
