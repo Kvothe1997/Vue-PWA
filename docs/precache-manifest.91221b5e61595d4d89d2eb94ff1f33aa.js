@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c056fb589dea6b733e6c",
-    "url": "/Vue-PWA/css/app.69625e14.css"
+    "revision": "59416a71e34e67865c6a",
+    "url": "/Vue-PWA/css/app.8beb61f9.css"
   },
   {
     "revision": "c1e769605e4686003967900cb433dc65",
@@ -48,16 +48,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/img/selva_negra.164ecde9.webp"
   },
   {
-    "revision": "0f6c76643025a4a2655065bb02b6f10c",
+    "revision": "c0c5f3020e664763ac0832393e0acd5f",
     "url": "/Vue-PWA/index.html"
   },
   {
-    "revision": "c056fb589dea6b733e6c",
-    "url": "/Vue-PWA/js/app.c191aeb0.js"
+    "revision": "59416a71e34e67865c6a",
+    "url": "/Vue-PWA/js/app.f02c4f63.js"
   },
   {
-    "revision": "50e10b24123d8d06d92e",
-    "url": "/Vue-PWA/js/chunk-vendors.0d88c53a.js"
+    "revision": "1d66e68fd9fa8292ced2",
+    "url": "/Vue-PWA/js/chunk-vendors.7abb6a4f.js"
   },
   {
     "revision": "8eca22175f9add9d1caefea4a79d354b",
