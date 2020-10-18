@@ -10,20 +10,13 @@
   <!-- Modal ... -->
   <transition name="modal">
     <div v-if="showModal" class="modal-mask">
-      <div class="modal-wrapper">
-        <div class="modal-container">
-          <span @click="closeModal" class="cerrar" ontouchstart=""
-            >&times;</span
-          >
-          <h2>{{ title }}</h2>
-          <div class="modalGrid">
-            <img
-              :src="require(`../assets/Images/${imageUrl}`)"
-              :alt="imageAlt"
-            />
-            <div class="ingredientes" v-html="recetaIngredientes"></div>
-            <div class="modalContent" v-html="recetaContenido"></div>
-          </div>
+      <div class="modal-container">
+        <span @click="closeModal" class="cerrar" ontouchstart="">&times;</span>
+        <h2>{{ title }}</h2>
+        <div class="modalGrid">
+          <img :src="require(`../assets/Images/${imageUrl}`)" :alt="imageAlt" />
+          <div class="ingredientes" v-html="recetaIngredientes"></div>
+          <div class="modalContent" v-html="recetaContenido"></div>
         </div>
       </div>
     </div>
@@ -144,18 +137,17 @@ article > img {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.4) !important; /* ; Black w/ opacity */
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   display: table;
   /* transition: opacity 0.3s ease;  Ajustar transición hacia adentro y ahcia afuer, tal vez en los transition effects.*/
 }
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
-}
 .modal-container {
+  position: fixed; /* Stay in place */
+  left: 5%;
+  top: 5%;
   width: 90%;
   height: 90%;
   margin: 0px auto;
