@@ -1,9 +1,10 @@
 <template>
   <!-- Menú -->
-  <nav>
+  <nav v-resize="onResize">
     <ul class="NavBar">
-      <MedidasEquivalencias />
+      <MedidasEquivalencias v-if="!mostrar" />
       <SearchFilter />
+      <MenuHamburguesa v-if="mostrar" />
     </ul>
   </nav>
 </template>
@@ -11,12 +12,32 @@
 <script>
 import MedidasEquivalencias from "./MedidasEquivalencias.vue";
 import SearchFilter from "./SearchFilter.vue";
+import MenuHamburguesa from "./MenuHamburguesa.vue";
 
 export default {
+  data() {
+    return {
+      mostrar: false
+    };
+  },
   name: "NavigationBar",
   components: {
     MedidasEquivalencias,
-    SearchFilter
+    SearchFilter,
+    MenuHamburguesa
+  },
+  mounted() {
+    this.onResize();
+  },
+
+  methods: {
+    onResize() {
+      if (window.innerWidth < 640) {
+        this.mostrar = true;
+      } else {
+        this.mostrar = false;
+      }
+    }
   }
 };
 </script>

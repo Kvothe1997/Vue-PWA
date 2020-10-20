@@ -4,6 +4,10 @@ const app = createApp(App);
 
 import "./registerServiceWorker";
 
+import Vuetify from "vuetify";
+import "vuetify/dist/vuetify.min.css";
+app.use(Vuetify);
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";

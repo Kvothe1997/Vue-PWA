@@ -6,9 +6,9 @@
       class="searchTerm"
       placeholder="Búsqueda..."
     />
-    <button type="submit" class="searchButton">
+    <div class="searchButton">
       <font-awesome-icon :icon="['fas', 'search']" />
-    </button>
+    </div>
   </li>
 </template>
 
@@ -56,7 +56,6 @@ export default {
   text-align: center;
   color: #5688ba;
   border-radius: 0 5px 5px 0;
-  cursor: pointer;
   font-size: 1.4rem;
 }
 </style>
