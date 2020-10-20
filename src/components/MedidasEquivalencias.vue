@@ -1,6 +1,6 @@
 <template>
   <!-- list item -->
-  <li ontouchstart="" @click="openModal">
+  <li class="MedidasEquivalencias" ontouchstart="" @click="openModal">
     Medidas y equivalencias
   </li>
 
@@ -160,7 +160,7 @@ export default {
 
 <style scoped>
 /*---- List item style -----*/
-li {
+.MedidasEquivalencias {
   text-align: center;
   padding: 0.25rem 1rem;
   background-color: #5688ba;
@@ -169,20 +169,22 @@ li {
   border-radius: 500px;
   color: black;
   border: 0.01rem solid #5688ba;
+  order: 3;
 }
-@media (min-width: 600px) {
-  li {
+@media (min-width: 728px) {
+  .MedidasEquivalencias {
     font-size: 1.4rem;
+    order: 1;
   }
 }
 
 @media (hover: hover) {
-  li:hover {
+  .MedidasEquivalencias:hover {
     background-color: #b7cbdf;
     cursor: pointer;
   }
 }
-li:active {
+.MedidasEquivalencias:active {
   box-shadow: inset 0px 0px 0.3rem black;
   background-color: #b7cbdf;
 }

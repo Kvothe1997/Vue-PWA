@@ -35,6 +35,12 @@ export default {
   margin: 0.25rem 1rem;
   align-self: center;
   display: flex;
+  order: 1;
+}
+@media (min-width: 728px) {
+  .searchLi {
+    order: 2;
+  }
 }
 .searchTerm {
   width: 100%;

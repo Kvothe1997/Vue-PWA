@@ -35,8 +35,7 @@
     "portal-vue": "^2.1.7",
     "prettier": "^1.19.1",
     "sass": "^1.26.11",
-    "sass-loader": "^10.0.2",
-    "vue-cli-plugin-vuetify": "^2.0.7"
+    "sass-loader": "^10.0.2"
   },
   "eslintConfig": {
     "root": true,

@@ -1,10 +1,13 @@
 <template>
   <!-- Menú -->
-  <nav v-resize="onResize">
+  <nav>
     <ul class="NavBar">
-      <MedidasEquivalencias v-if="!mostrar" />
+      <MedidasEquivalencias v-if="!mostrar || stateMenuHamburguesa" />
       <SearchFilter />
-      <MenuHamburguesa v-if="mostrar" />
+      <MenuHamburguesa
+        v-if="mostrar"
+        @emite="stateMenuHamburguesa = !stateMenuHamburguesa"
+      />
     </ul>
   </nav>
 </template>
@@ -17,7 +20,8 @@ import MenuHamburguesa from "./MenuHamburguesa.vue";
 export default {
   data() {
     return {
-      mostrar: false
+      windowInnerWidth: window.innerWidth,
+      stateMenuHamburguesa: false
     };
   },
   name: "NavigationBar",
@@ -26,17 +30,14 @@ export default {
     SearchFilter,
     MenuHamburguesa
   },
-  mounted() {
-    this.onResize();
+  created() {
+    window.addEventListener("resize", () => {
+      this.windowInnerWidth = window.innerWidth;
+    });
   },
-
-  methods: {
-    onResize() {
-      if (window.innerWidth < 640) {
-        this.mostrar = true;
-      } else {
-        this.mostrar = false;
-      }
+  computed: {
+    mostrar() {
+      return this.windowInnerWidth < 728 ? true : false;
     }
   }
 };
@@ -53,7 +54,7 @@ export default {
   list-style-type: none;
   padding: 0.25rem;
 }
-@media (min-width: 640px) {
+@media (min-width: 728px) {
   .NavBar {
     justify-content: space-between;
   }

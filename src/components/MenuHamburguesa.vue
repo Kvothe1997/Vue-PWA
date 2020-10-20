@@ -15,7 +15,7 @@
     <button
       type="button"
       :class="['plate', 'plate4', { active: toggled }]"
-      @click="AnimarBotonHamburguesa"
+      @click="BotonHamburguesa"
     >
       <svg version="1.1" viewBox="0 0 40 30">
         <path class="line line1" d="M 20 0 H 0"></path>
@@ -41,9 +41,11 @@ export default {
     };
   },
   name: "MenuHamburguesa",
+  emits: ["emite"],
   methods: {
-    AnimarBotonHamburguesa() {
+    BotonHamburguesa() {
       this.toggled = !this.toggled;
+      this.$emit("emite");
     }
   }
 };
@@ -52,6 +54,12 @@ export default {
 <style scoped>
 .MenuHamburguesa {
   align-self: center;
+  order: 2;
+}
+@media (min-width: 728px) {
+  .MenuHamburguesa {
+    order: 3;
+  }
 }
 .plate {
   height: 2rem;
