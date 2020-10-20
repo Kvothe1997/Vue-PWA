@@ -1,7 +1,7 @@
 <template>
   <!-- Menú -->
   <nav>
-    <ul>
+    <ul class="NavBar">
       <MedidasEquivalencias />
       <SearchFilter />
     </ul>
@@ -23,10 +23,18 @@ export default {
 
 <style scoped>
 /*---- ul of Nav style -----*/
-nav > ul {
+.NavBar {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 0.5rem;
   background-color: #5688ba;
   list-style-type: none;
   padding: 0.25rem;
+}
+@media (min-width: 640px) {
+  .NavBar {
+    justify-content: space-between;
+  }
 }
 </style>

@@ -161,6 +161,7 @@ export default {
 <style scoped>
 /*---- List item style -----*/
 li {
+  text-align: center;
   padding: 0.25rem 1rem;
   background-color: #5688ba;
   font-weight: bolder;
@@ -169,7 +170,7 @@ li {
   color: black;
   border: 0.01rem solid #5688ba;
 }
-@media (min-width: 500px) {
+@media (min-width: 600px) {
   li {
     font-size: 1.4rem;
   }

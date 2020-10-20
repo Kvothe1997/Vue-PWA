@@ -31,32 +31,32 @@ export default {
 
 <style>
 .searchLi {
+  width: 15rem;
+  margin: 0.25rem 1rem;
   align-self: center;
-  margin-left: auto;
   display: flex;
 }
 .searchTerm {
   width: 100%;
   border: 3px solid black;
   border-right: none;
-  padding: 5px;
-  height: 20px;
+  padding: 0.05rem 0.25rem 0.05rem 0.25rem;
   border-radius: 5px 0 0 5px;
   outline: none;
-  color: #b7cbdf;
+  color: #5688ba;
+  font-size: 1.4rem;
 }
 .searchTerm:focus {
-  color: #5688ba;
+  color: black;
 }
 .searchButton {
-  width: 40px;
-  height: 36px;
-  border: 1px solid black;
+  width: 15%;
+  border: 3px solid #000000;
   background: black;
   text-align: center;
   color: #5688ba;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 1.4rem;
 }
 </style>
