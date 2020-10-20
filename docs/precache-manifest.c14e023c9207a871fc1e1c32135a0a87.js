@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "96bf8ca0b5787d0431d9",
-    "url": "/Vue-PWA/css/app.d409af17.css"
+    "revision": "55c7f34869dd4584696e",
+    "url": "/Vue-PWA/css/app.d746975c.css"
   },
   {
     "revision": "c1e769605e4686003967900cb433dc65",
@@ -48,24 +48,48 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/img/selva_negra.164ecde9.webp"
   },
   {
-    "revision": "13eda7528fc269b97542fed819334b64",
+    "revision": "c3d5a89c0f4fdc72ccba33cb570b4aa1",
     "url": "/Vue-PWA/index.html"
   },
   {
-    "revision": "96bf8ca0b5787d0431d9",
-    "url": "/Vue-PWA/js/app.8bff8753.js"
+    "revision": "55c7f34869dd4584696e",
+    "url": "/Vue-PWA/js/app.2d4a5922.js"
   },
   {
-    "revision": "4445ac79a2f92c492ac9",
-    "url": "/Vue-PWA/js/chunk-vendors.f13f2e01.js"
+    "revision": "2ff851743abb4725b4b7",
+    "url": "/Vue-PWA/js/chunk-vendors.ae7a8614.js"
   },
   {
     "revision": "8eca22175f9add9d1caefea4a79d354b",
     "url": "/Vue-PWA/manifest.json"
   },
   {
+    "revision": "c1cb8e2e622e1f7d3d4ae4910830e1b7",
+    "url": "/Vue-PWA/recetas/Muffins.html"
+  },
+  {
+    "revision": "87a72916f470fa8e7e9bb0eca6bae4e8",
+    "url": "/Vue-PWA/recetas/Pan_molde.html"
+  },
+  {
     "revision": "1771fce10712e0bd8283dd9d0a344848",
     "url": "/Vue-PWA/recetas/Panqueques.html"
+  },
+  {
+    "revision": "68e43e9394d3896d419af1e388df5b9d",
+    "url": "/Vue-PWA/recetas/Panqueques_avena.html"
+  },
+  {
+    "revision": "627189bd4746877bfb27eeb290748b6e",
+    "url": "/Vue-PWA/recetas/Pie_maracuya.html"
+  },
+  {
+    "revision": "6954a71da2d748672456cb8ee2440d6f",
+    "url": "/Vue-PWA/recetas/Queque_marmoleado.html"
+  },
+  {
+    "revision": "e4ca0d50c609a40b0de78b19aec229a9",
+    "url": "/Vue-PWA/recetas/Torta_selva_negra.html"
   },
   {
     "revision": "735ab4f94fbcd57074377afca324c813",
