@@ -7,27 +7,40 @@ module.exports = {
       short_name: "Recetas",
       start_url: "./",
       display: "standalone",
-      theme_color: "#000000",
-      icons: {
-        src: "./favicon.svg",
-        sizes: "512x512",
-        type: "image/svg+xml",
-        purpose: "any maskable"
-      }
+      theme_color: "#ff0000",
+      background_color: "#ff0000",
+      icons: [
+        {
+          src: "./img/icons/maskable_icon.png",
+          sizes: "1024x1024",
+          type: "image/png",
+          purpose: "maskable",
+        },
+        {
+          src: "./img/icons/android-chrome-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          src: "./img/icons/android-chrome-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+        },
+      ],
     },
 
-    themeColor: "#4DBA87",
+    themeColor: "#ff0000",
     msTileColor: "#000000",
     appleMobileWebAppCapable: "yes",
     appleMobileWebAppStatusBarStyle: "black",
     iconPaths: {
-      maskicon: null,
-      favicon32: "./favicon.svg",
-      favicon16: "./favicon.svg",
-      appleTouchIcon: null,
-      msTileImage: null
+      maskicon: "./img/icons/safari-pinned-tab.svg",
+      favicon32: "./img/icons/favicon-32x32.png",
+      favicon16: "./img/icons/favicon-16x16.png",
+      appleTouchIcon: "./img/icons/apple-touch-icon.png",
+      msTileImage: null,
     },
     // configure the workbox plugin
-    workboxPluginMode: "GenerateSW"
-  }
+    workboxPluginMode: "GenerateSW",
+  },
 };

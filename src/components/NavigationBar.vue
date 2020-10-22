@@ -2,7 +2,7 @@
   <!-- Menú -->
   <nav>
     <ul class="NavBar">
-      <MedidasEquivalencias v-if="!mostrar || stateMenuHamburguesa" />
+      <MedidasEquivalencias v-if="stateMenuHamburguesa" />
       <SearchFilter />
       <MenuHamburguesa
         v-if="mostrar"
@@ -18,10 +18,26 @@ import SearchFilter from "./SearchFilter.vue";
 import MenuHamburguesa from "./MenuHamburguesa.vue";
 
 export default {
+  setup() {
+    let stateMenuHamburguesa0 = "";
+    let mostrar0 = "";
+    if (window.innerWidth < 728) {
+      stateMenuHamburguesa0 = false;
+      mostrar0 = true;
+    } else {
+      stateMenuHamburguesa0 = true;
+      mostrar0 = false;
+    }
+    return {
+      stateMenuHamburguesa0,
+      mostrar0
+    };
+  },
   data() {
     return {
       windowInnerWidth: window.innerWidth,
-      stateMenuHamburguesa: false
+      stateMenuHamburguesa: this.stateMenuHamburguesa0,
+      mostrar: this.mostrar0
     };
   },
   name: "NavigationBar",
@@ -35,9 +51,15 @@ export default {
       this.windowInnerWidth = window.innerWidth;
     });
   },
-  computed: {
-    mostrar() {
-      return this.windowInnerWidth < 728 ? true : false;
+  watch: {
+    windowInnerWidth: function(newVal) {
+      if (newVal < 728) {
+        this.stateMenuHamburguesa = false;
+        this.mostrar = true;
+      } else {
+        this.stateMenuHamburguesa = true;
+        this.mostrar = false;
+      }
     }
   }
 };
