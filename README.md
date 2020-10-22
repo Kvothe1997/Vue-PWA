@@ -10,6 +10,6 @@ module.exports = {
 };
 ```
 
-Note: The page is available at https://kvothe1997.github.io/Vue-PWA/
+Note: This page is available at https://kvothe1997.github.io/Vue-PWA/
 
 
