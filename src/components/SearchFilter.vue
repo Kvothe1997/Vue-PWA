@@ -36,6 +36,7 @@ export default {
   align-self: center;
   display: flex;
   order: 1;
+  background-color: #5688ba;
 }
 @media (min-width: 728px) {
   .searchLi {
@@ -51,6 +52,7 @@ export default {
   outline: none;
   color: #5688ba;
   font-size: 1.4rem;
+  background-color: rgba(255, 255, 255, 0.87);
 }
 .searchTerm:focus {
   color: black;

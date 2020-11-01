@@ -7,8 +7,8 @@ module.exports = {
       short_name: "Recetas",
       start_url: "./",
       display: "standalone",
-      theme_color: "#ff0000",
-      background_color: "#ff0000",
+      theme_color: "#ffffff",
+      background_color: "#5688ba",
       icons: [
         {
           src: "./img/icons/maskable_icon.png",
@@ -29,8 +29,8 @@ module.exports = {
       ],
     },
 
-    themeColor: "#ff0000",
-    msTileColor: "#000000",
+    themeColor: "#ffffff",
+    msTileColor: "#ffffff",
     appleMobileWebAppCapable: "yes",
     appleMobileWebAppStatusBarStyle: "black",
     iconPaths: {

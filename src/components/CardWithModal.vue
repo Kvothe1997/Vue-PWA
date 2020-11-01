@@ -89,15 +89,15 @@ export default {
 <style scoped>
 /* --- Masonry: Multicolumn --- */
 .protection {
-  display: inline-block;
-  margin-bottom: 1.25rem;
+  display: block;
   -webkit-column-break-inside: avoid-column;
   page-break-inside: avoid-column;
   break-inside: avoid-column;
+  padding-bottom: 1.5rem;
 }
 @media (min-width: 500px) {
   .protection {
-    margin-bottom: 1rem;
+    padding-bottom: 1rem;
   }
 }
 /* ----- */
@@ -113,7 +113,7 @@ article > h1 {
   background-color: black;
   font-size: 2.25rem;
   text-align: center;
-  color: white;
+  color: rgb(255, 255, 255, 0.87);
   padding-bottom: 0.25rem;
   border-radius: 5px 5px 0% 0%;
   cursor: pointer;
@@ -131,6 +131,7 @@ article > img {
   object-fit: contain;
   cursor: pointer;
 }
+/*------ modal---- */
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -153,13 +154,12 @@ article > img {
   margin: 0px auto;
   background-color: #fff;
   border-radius: 0.5%;
-  /* transition: all 0.3s ease;  Arreglar*/
   font-family: Helvetica, Arial, sans-serif;
   overflow: auto; /*Enable scroll if needed*/
   box-shadow: 0px 0px 5px #5688ba;
 }
 /* Vue transition functionality */
-.modal-enter {
+/* .modal-enter {
   opacity: 0;
 }
 .modal-leave-active {
@@ -169,7 +169,7 @@ article > img {
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
-}
+} */
 /* El botón para cerrar */
 .cerrar {
   color: #5688ba;

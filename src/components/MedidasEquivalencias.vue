@@ -145,14 +145,14 @@ export default {
     };
   },
   name: "MedidasEquivalencias",
+  emits: ["emite"],
   methods: {
     openModal() {
-      document.body.style.overflow = "hidden";
       this.showModal = true;
     },
     closeModal() {
       this.showModal = false;
-      document.body.style.overflow = "auto";
+      this.$emit("emite");
     }
   }
 };
@@ -162,31 +162,24 @@ export default {
 /*---- List item style -----*/
 .MedidasEquivalencias {
   text-align: center;
-  padding: 0.25rem 1rem;
-  background-color: #5688ba;
+  padding: 0.5rem 0;
+  background-color: black;
   font-weight: bolder;
   font-size: 1.7rem;
-  border-radius: 500px;
-  color: black;
-  border: 0.01rem solid #5688ba;
-  order: 3;
-}
-@media (min-width: 728px) {
-  .MedidasEquivalencias {
-    font-size: 1.4rem;
-    order: 1;
-  }
+  color: #5688ba;
 }
 
 @media (hover: hover) {
   .MedidasEquivalencias:hover {
-    background-color: #b7cbdf;
+    background-color: #5688ba;
     cursor: pointer;
+    color: black;
   }
 }
 .MedidasEquivalencias:active {
   box-shadow: inset 0px 0px 0.3rem black;
-  background-color: #b7cbdf;
+  background-color: #5688ba;
+  color: black;
 }
 /*---- Modal -----*/
 .modal-mask {
@@ -211,22 +204,9 @@ export default {
   margin: 0px auto;
   background-color: #fff;
   border-radius: 0.5%;
-  /* transition: all 0.3s ease;  Arreglar*/
   font-family: Helvetica, Arial, sans-serif;
   overflow: auto; /*Enable scroll if needed*/
   box-shadow: 0px 0px 5px #5688ba;
-}
-/* -----Vue transition functionality----- */
-.modal-enter {
-  opacity: 0;
-}
-.modal-leave-active {
-  opacity: 0;
-}
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
 }
 /* -----El botón para cerrar -----*/
 .cerrar {

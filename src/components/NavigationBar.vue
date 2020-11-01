@@ -1,64 +1,73 @@
 <template>
   <!-- Menú -->
   <nav>
-    <ul class="NavBar">
-      <MedidasEquivalencias v-if="stateMenuHamburguesa" />
+    <ul class="NavBar" :class="{ sticky: active }" ref="NavBar">
+      <CategoriaSeleccionada :categoria="this.$store.state.categoryName" />
       <SearchFilter />
-      <MenuHamburguesa
-        v-if="mostrar"
-        @emite="stateMenuHamburguesa = !stateMenuHamburguesa"
-      />
+      <MenuHamburguesa @emite="openModalNav" />
     </ul>
+    <ModalNavegacion :showModal="showModalNav" @emitecerrar="closeModalNav" />
   </nav>
 </template>
 
 <script>
-import MedidasEquivalencias from "./MedidasEquivalencias.vue";
+import ModalNavegacion from "./ModalNavegacion.vue";
+import CategoriaSeleccionada from "./CategoriaSeleccionada.vue";
 import SearchFilter from "./SearchFilter.vue";
 import MenuHamburguesa from "./MenuHamburguesa.vue";
 
 export default {
-  setup() {
-    let stateMenuHamburguesa0 = "";
-    let mostrar0 = "";
-    if (window.innerWidth < 728) {
-      stateMenuHamburguesa0 = false;
-      mostrar0 = true;
-    } else {
-      stateMenuHamburguesa0 = true;
-      mostrar0 = false;
-    }
-    return {
-      stateMenuHamburguesa0,
-      mostrar0
-    };
-  },
   data() {
     return {
-      windowInnerWidth: window.innerWidth,
-      stateMenuHamburguesa: this.stateMenuHamburguesa0,
-      mostrar: this.mostrar0
+      showModalNav: false,
+      active: false
     };
   },
   name: "NavigationBar",
   components: {
-    MedidasEquivalencias,
+    CategoriaSeleccionada,
     SearchFilter,
-    MenuHamburguesa
+    MenuHamburguesa,
+    ModalNavegacion
   },
-  created() {
-    window.addEventListener("resize", () => {
-      this.windowInnerWidth = window.innerWidth;
-    });
+  mounted() {
+    let NavBarOffsetTop = this.$refs.NavBar.offsetTop;
+    this.$store.commit("actualizarNavBarOffSetTop", NavBarOffsetTop);
+    let NavBarHeight = this.$refs.NavBar.offsetHeight;
+    this.$store.commit("actualizarNavBarHeight", NavBarHeight);
+  },
+  methods: {
+    openModalNav() {
+      (this.showModalNav = true), (document.body.style.overflow = "hidden");
+    },
+    closeModalNav() {
+      (this.showModalNav = false), (document.body.style.overflow = "auto");
+    }
   },
   watch: {
-    windowInnerWidth: function(newVal) {
-      if (newVal < 728) {
-        this.stateMenuHamburguesa = false;
-        this.mostrar = true;
-      } else {
-        this.stateMenuHamburguesa = true;
-        this.mostrar = false;
+    "$store.state.scroll": {
+      handler() {
+        if (window.pageYOffset >= this.$store.state.NavBarOffSetTop) {
+          this.active = true;
+        } else {
+          this.active = false;
+        }
+      }
+    },
+    "$store.state.resizeHeight": {
+      handler() {
+        let value = document.getElementById("titulo-principal").offsetHeight;
+        this.$store.commit("actualizarNavBarOffSetTop", value);
+        let NavBarHeight = this.$refs.NavBar.offsetHeight;
+        this.$store.commit("actualizarNavBarHeight", NavBarHeight);
+      }
+    },
+    "$store.state.resizeWidth": {
+      handler() {
+        let value = document.getElementById("titulo-principal").offsetHeight;
+        this.$store.commit("actualizarNavBarOffSetTop", value);
+        let NavBarHeight = this.$refs.NavBar.offsetHeight;
+        this.$store.commit("actualizarNavBarHeight", NavBarHeight);
       }
     }
   }
@@ -71,14 +80,21 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  row-gap: 0.5rem;
+  align-items: center;
   background-color: #5688ba;
   list-style-type: none;
   padding: 0.25rem;
 }
-@media (min-width: 728px) {
+@media (min-width: 713px) {
   .NavBar {
     justify-content: space-between;
   }
+}
+/* ----sticky NavBar ----*/
+.sticky {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
 }
 </style>

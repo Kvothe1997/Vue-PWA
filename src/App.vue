@@ -12,6 +12,19 @@ export default {
   components: {
     CardsMasonry,
     NavigationBar
+  },
+  created() {
+    // Listener único de scroll, se utiliza para el scroll infinito y el sticky NavigationBar.
+    addEventListener("scroll", () => {
+      let value = window.scrollY;
+      this.$store.commit("actualizarScroll", value);
+    });
+    // listener de resize, a utilizarse con el sticky navigator. Para calcular pading y altura del h1.
+    addEventListener("resize", () => {
+      let height = window.innerHeight;
+      let width = window.innerWidth;
+      this.$store.commit("actualizarResize", { height, width });
+    });
   }
 };
 </script>
@@ -107,17 +120,23 @@ video,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 100%;
   vertical-align: baseline;
+  background-color: rgb(255, 255, 255, 0.87);
 }
 html,
 body {
   height: 100%;
 }
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   display: flex;
   flex-direction: column;
 }
+
 .content {
-  flex: 1 0 auto;
+  flex-grow: 1;
 }
 header > h1 {
   text-align: center;
