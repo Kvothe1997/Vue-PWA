@@ -1,7 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "789ee77e647b8f948420",
-    "url": "/Vue-PWA/css/app.089db0e6.css"
+    "revision": "0cf73000b91761f38e02",
+    "url": "/Vue-PWA/css/app.04281a53.css"
+  },
+  {
+    "revision": "68ce6dcded0d26e1a70cf2e3b78f5e90",
+    "url": "/Vue-PWA/img/IMG_0282.68ce6dcd.jpg"
   },
   {
     "revision": "c1e769605e4686003967900cb433dc65",
@@ -40,24 +44,36 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/img/panqueques_avena.7a2f43e1.webp"
   },
   {
+    "revision": "9d53c6c69c345495430adf6b95aaf03d",
+    "url": "/Vue-PWA/img/pie_limon.9d53c6c6.webp"
+  },
+  {
     "revision": "9e18fec45452a2a497d94e82816559e3",
     "url": "/Vue-PWA/img/pie_maracuya.9e18fec4.webp"
+  },
+  {
+    "revision": "aa1ec57e47ad50cda58cd2016e0950df",
+    "url": "/Vue-PWA/img/queque_marmoleado.aa1ec57e.webp"
   },
   {
     "revision": "164ecde9173ae458535efb85ab8746d9",
     "url": "/Vue-PWA/img/selva_negra.164ecde9.webp"
   },
   {
-    "revision": "d1c2addb55817e20622b00c22d6e8191",
+    "revision": "7bfee3eb420937d7ad086dd087f97dd6",
+    "url": "/Vue-PWA/img/torta_vainilla.7bfee3eb.webp"
+  },
+  {
+    "revision": "290995f7bc6504cbb0b655e189b8b026",
     "url": "/Vue-PWA/index.html"
   },
   {
-    "revision": "789ee77e647b8f948420",
-    "url": "/Vue-PWA/js/app.07665e42.js"
+    "revision": "0cf73000b91761f38e02",
+    "url": "/Vue-PWA/js/app.cd541222.js"
   },
   {
-    "revision": "e4dc4ca8ed53082fbdb3",
-    "url": "/Vue-PWA/js/chunk-vendors.208e84b0.js"
+    "revision": "852aea400d1a19dc9155",
+    "url": "/Vue-PWA/js/chunk-vendors.768e4446.js"
   },
   {
     "revision": "ccd4044ef0509d2cded63a2349d51692",
@@ -80,7 +96,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/recetas/Panqueques_avena.html"
   },
   {
-    "revision": "627189bd4746877bfb27eeb290748b6e",
+    "revision": "a42a5cbacdd0ae93efed9f7eb95a0755",
+    "url": "/Vue-PWA/recetas/Pie_limon.html"
+  },
+  {
+    "revision": "6f9bb95d55824d9e327eb3e40401cbf9",
     "url": "/Vue-PWA/recetas/Pie_maracuya.html"
   },
   {
@@ -88,8 +108,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/recetas/Queque_marmoleado.html"
   },
   {
-    "revision": "e4ca0d50c609a40b0de78b19aec229a9",
+    "revision": "ad38d1b98db63987a0bf08f74e369178",
     "url": "/Vue-PWA/recetas/Torta_selva_negra.html"
+  },
+  {
+    "revision": "9091edab84df550538f5722a4ab30e7f",
+    "url": "/Vue-PWA/recetas/Torta_vainilla.html"
   },
   {
     "revision": "735ab4f94fbcd57074377afca324c813",
