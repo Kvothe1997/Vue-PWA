@@ -5,133 +5,132 @@
   </li>
 
   <!-- Modal de list item -->
+  <div v-if="showModal" @click="closeModal" class="modal-mask"></div>
   <transition name="modal">
-    <div v-if="showModal" class="modal-mask">
-      <div class="modal-container">
-        <span @click="closeModal" class="cerrar" ontouchstart="">&times;</span>
-        <h2>Medidas y equivalencias</h2>
-        <div class="modalTables">
-          <table>
-            <thead>
-              <tr>
-                <th>Harina o azúcar impalpable</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1 taza = 110 g</td>
-              </tr>
-              <tr>
-                <td>&frac12; taza = 55 g</td>
-              </tr>
-              <tr>
-                <td>&frac13; taza = 40 g</td>
-              </tr>
-              <tr>
-                <td>&frac14; taza = 30 g</td>
-              </tr>
-            </tbody>
-          </table>
-          <table>
-            <thead>
-              <tr>
-                <th>Azúcar o mantequilla</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1 taza = 225 g</td>
-              </tr>
-              <tr>
-                <td>&frac12; taza = 115 g</td>
-              </tr>
-              <tr>
-                <td>&frac13; taza = 75 g</td>
-              </tr>
-              <tr>
-                <td>&frac14; taza = 55 g</td>
-              </tr>
-            </tbody>
-          </table>
-          <table>
-            <thead>
-              <tr>
-                <th>Azúcar moreno</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1 taza = 200 g</td>
-              </tr>
-              <tr>
-                <td>&frac12; taza = 100 g</td>
-              </tr>
-              <tr>
-                <td>&frac13; taza = 65 g</td>
-              </tr>
-              <tr>
-                <td>&frac14; taza = 50 g</td>
-              </tr>
-            </tbody>
-          </table>
-          <table>
-            <thead>
-              <tr>
-                <th>Cacao en polvo</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1 taza = 125 g</td>
-              </tr>
-              <tr>
-                <td>&frac12; taza = 60 g</td>
-              </tr>
-              <tr>
-                <td>&frac13; taza = 40 g</td>
-              </tr>
-              <tr>
-                <td>&frac14; taza = 30 g</td>
-              </tr>
-            </tbody>
-          </table>
-          <table>
-            <thead>
-              <tr>
-                <th>Otras medidas</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1 onza = 28 g</td>
-              </tr>
-              <tr>
-                <td>1 stick = 125 g</td>
-              </tr>
-              <tr>
-                <td>1 pinta = 400 ml</td>
-              </tr>
-            </tbody>
-          </table>
-          <table>
-            <thead>
-              <tr>
-                <th>Líquidos</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1 taza = 240 ml</td>
-              </tr>
-              <tr>
-                <td>1 cucharadita = 5 ml</td>
-              </tr>
-              <tr>
-                <td>1 cucharada = 15 ml</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div v-if="showModal" class="modal-container">
+      <span @click="closeModal" class="cerrar" ontouchstart="">&times;</span>
+      <h2>Medidas y equivalencias</h2>
+      <div class="modalTables">
+        <table>
+          <thead>
+            <tr>
+              <th>Harina o azúcar impalpable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1 taza = 110 g</td>
+            </tr>
+            <tr>
+              <td>&frac12; taza = 55 g</td>
+            </tr>
+            <tr>
+              <td>&frac13; taza = 40 g</td>
+            </tr>
+            <tr>
+              <td>&frac14; taza = 30 g</td>
+            </tr>
+          </tbody>
+        </table>
+        <table>
+          <thead>
+            <tr>
+              <th>Azúcar o mantequilla</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1 taza = 225 g</td>
+            </tr>
+            <tr>
+              <td>&frac12; taza = 115 g</td>
+            </tr>
+            <tr>
+              <td>&frac13; taza = 75 g</td>
+            </tr>
+            <tr>
+              <td>&frac14; taza = 55 g</td>
+            </tr>
+          </tbody>
+        </table>
+        <table>
+          <thead>
+            <tr>
+              <th>Azúcar moreno</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1 taza = 200 g</td>
+            </tr>
+            <tr>
+              <td>&frac12; taza = 100 g</td>
+            </tr>
+            <tr>
+              <td>&frac13; taza = 65 g</td>
+            </tr>
+            <tr>
+              <td>&frac14; taza = 50 g</td>
+            </tr>
+          </tbody>
+        </table>
+        <table>
+          <thead>
+            <tr>
+              <th>Cacao en polvo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1 taza = 125 g</td>
+            </tr>
+            <tr>
+              <td>&frac12; taza = 60 g</td>
+            </tr>
+            <tr>
+              <td>&frac13; taza = 40 g</td>
+            </tr>
+            <tr>
+              <td>&frac14; taza = 30 g</td>
+            </tr>
+          </tbody>
+        </table>
+        <table>
+          <thead>
+            <tr>
+              <th>Otras medidas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1 onza = 28 g</td>
+            </tr>
+            <tr>
+              <td>1 stick = 125 g</td>
+            </tr>
+            <tr>
+              <td>1 pinta = 400 ml</td>
+            </tr>
+          </tbody>
+        </table>
+        <table>
+          <thead>
+            <tr>
+              <th>Líquidos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1 taza = 240 ml</td>
+            </tr>
+            <tr>
+              <td>1 cucharadita = 5 ml</td>
+            </tr>
+            <tr>
+              <td>1 cucharada = 15 ml</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </transition>
@@ -141,7 +140,7 @@
 export default {
   data() {
     return {
-      showModal: false
+      showModal: false,
     };
   },
   name: "MedidasEquivalencias",
@@ -153,8 +152,8 @@ export default {
     closeModal() {
       this.showModal = false;
       this.$emit("emite");
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -197,12 +196,13 @@ export default {
 }
 .modal-container {
   position: fixed; /* Stay in place */
+  z-index: 9999;
   left: 5%;
   top: 5%;
   width: 90%;
   height: 90%;
   margin: 0px auto;
-  background-color: #fff;
+  background-color: var(--modal-background);
   border-radius: 0.5%;
   font-family: Helvetica, Arial, sans-serif;
   overflow: auto; /*Enable scroll if needed*/
@@ -253,14 +253,14 @@ export default {
   flex-basis: 40%;
   min-width: 300px;
   margin: 1rem 0.5rem 0rem 0.5rem;
-  border: 0.5rem solid #b7cbdf;
+  border: 0.5rem solid var(--modal-medidas-table-background);
   text-align: center;
   flex-grow: 1;
 }
 .modalTables > table th {
-  background: #b7cbdf;
-  color: black;
-  -webkit-text-stroke: black;
+  background: var(--modal-medidas-table-background);
+  color: var(--modal-medidas-table-color);
+  -webkit-text-stroke: var(--modal-medidas-table-text-stroke);
   -webkit-text-stroke-width: 0.05rem;
   padding: 0.25rem;
   font-size: 2.25rem;
@@ -268,6 +268,7 @@ export default {
 .modalTables > table tbody {
   font-weight: 500;
   font-size: 2rem;
+  color: var(--modal-medidas-tableBody-color);
 }
 @media (min-width: 500px) {
   .modalTables {

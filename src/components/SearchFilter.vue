@@ -19,13 +19,13 @@ export default {
   computed: {
     buscar: {
       get() {
-        return this.$store.state.buscar;
+        return this.$store.state.searchAndFilter.buscar;
       },
       set(value) {
-        this.$store.commit("actualizarBuscar", value);
-      }
-    }
-  }
+        this.$store.commit("searchAndFilter/actualizarBuscar", value);
+      },
+    },
+  },
 };
 </script>
 
@@ -50,9 +50,9 @@ export default {
   padding: 0.05rem 0.25rem 0.05rem 0.25rem;
   border-radius: 5px 0 0 5px;
   outline: none;
-  color: #5688ba;
+  color: var(--searchBox-color);
   font-size: 1.4rem;
-  background-color: rgba(255, 255, 255, 0.87);
+  background-color: var(--searchBox-background);
 }
 .searchTerm:focus {
   color: black;

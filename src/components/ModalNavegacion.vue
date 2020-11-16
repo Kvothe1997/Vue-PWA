@@ -1,6 +1,6 @@
 <template>
   <!-- Modal ... -->
-  <div v-if="showModal" class="modal-mask"></div>
+  <div v-if="showModal" @click="closeModal" class="modal-mask"></div>
   <transition name="modal">
     <div v-if="showModal" class="modal-container">
       <span @click="closeModal" class="cerrar" ontouchstart="">&times;</span>
@@ -42,28 +42,28 @@ export default {
       Categories: [
         {
           title: "Todas las recetas",
-          id: ""
+          id: "",
         },
         {
           title: "Postres",
-          id: "Postres"
+          id: "Postres",
         },
         {
           title: "Pan",
-          id: "Pan"
-        }
-      ]
+          id: "Pan",
+        },
+      ],
     };
   },
   name: "ModalNavegacion",
   components: {
-    MedidasEquivalencias
+    MedidasEquivalencias,
   },
   props: {
     showModal: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   emits: ["emitecerrar"],
   methods: {
@@ -73,21 +73,25 @@ export default {
     seleccionarCategoria() {
       let name = event.currentTarget.textContent;
       let id = event.currentTarget.getAttribute("data-id");
-      this.$store.commit("actualizarCategory", { name, id });
+      this.$store.commit("searchAndFilter/actualizarCategory", {
+        name,
+        id,
+      });
       this.closeModal();
       // Escrolear hasta el borde del NavBar si la altura total del scroll menos el header es mayor a la altura del viewport(ventana: window.innerheight) o hasta top si es menor. Se espera a que se rendericen las cards y luego se ejecuta.
       this.$nextTick(() => {
         if (
-          document.body.scrollHeight - this.$store.state.NavBarOffSetTop >=
+          document.body.scrollHeight -
+            this.$store.state.stickyNavBar.NavBarOffSetTop >=
           window.innerHeight
         ) {
-          window.scrollTo(0, this.$store.state.NavBarOffSetTop);
+          window.scrollTo(0, this.$store.state.stickyNavBar.NavBarOffSetTop);
         } else {
           window.scrollTo(0, 0);
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -158,6 +162,7 @@ export default {
   flex-direction: column;
   height: 100%;
   width: 100%;
+  background-color: var(--modal-background);
 }
 .modal-cabecera {
   display: block;
@@ -195,7 +200,7 @@ export default {
   display: inline-block;
   text-align: left;
   margin: 0.75rem 0 0.75rem 0.5rem;
-  color: black;
+  color: var(--modal-nav-color);
 }
 .modal-contenido > li > ul {
   list-style-type: none;

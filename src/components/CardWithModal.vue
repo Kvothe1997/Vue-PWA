@@ -1,23 +1,22 @@
 <template>
   <!-- Card -->
   <div class="protection">
-    <article @click="openModal">
+    <article ontouchstart="" @click="openModal">
       <h1>{{ title }}</h1>
       <img :src="require(`../assets/Images/${imageUrl}`)" :alt="imageAlt" />
     </article>
   </div>
 
   <!-- Modal ... -->
+  <div v-if="showModal" @click="closeModal" class="modal-mask"></div>
   <transition name="modal">
-    <div v-if="showModal" class="modal-mask">
-      <div class="modal-container">
-        <span @click="closeModal" class="cerrar" ontouchstart="">&times;</span>
-        <h2>{{ title }}</h2>
-        <div class="modalGrid">
-          <img :src="require(`../assets/Images/${imageUrl}`)" :alt="imageAlt" />
-          <div class="ingredientes" v-html="recetaIngredientes"></div>
-          <div class="modalContent" v-html="recetaContenido"></div>
-        </div>
+    <div v-if="showModal" class="modal-container">
+      <span @click="closeModal" class="cerrar" ontouchstart="">&times;</span>
+      <h2>{{ title }}</h2>
+      <div class="modalGrid">
+        <img :src="require(`../assets/Images/${imageUrl}`)" :alt="imageAlt" />
+        <div class="ingredientes" v-html="recetaIngredientes"></div>
+        <div class="modalContent" v-html="recetaContenido"></div>
       </div>
     </div>
   </transition>
@@ -29,27 +28,27 @@ export default {
     return {
       showModal: false,
       recetaIngredientes: "",
-      recetaContenido: ""
+      recetaContenido: "",
     };
   },
   name: "CardWithModal",
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     imageUrl: {
       type: String,
-      required: true
+      required: true,
     },
     imageAlt: {
       type: String,
-      required: true
+      required: true,
     },
     recetaUrl: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     async openModal() {
@@ -62,12 +61,12 @@ export default {
         //Convierto respuesta a HTMLDocument y luego guardo strings con los pedazos de HTML que necesito:recetaIngredientes y recetaContenido
         [
           this.recetaIngredientes,
-          this.recetaContenido
+          this.recetaContenido,
         ] = await response.text().then(async function(text) {
           let recetaHtml = await parser.parseFromString(text, "text/html");
           return [
             await recetaHtml.getElementById("ingredientes").innerHTML,
-            await recetaHtml.querySelector(".modalContent").innerHTML
+            await recetaHtml.querySelector(".modalContent").innerHTML,
           ];
         });
       } catch (error) {
@@ -81,8 +80,8 @@ export default {
     closeModal() {
       this.showModal = false;
       document.body.style.overflow = "auto";
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -93,14 +92,16 @@ export default {
   -webkit-column-break-inside: avoid-column;
   page-break-inside: avoid-column;
   break-inside: avoid-column;
-  padding-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  padding-top: 0.75rem;
 }
 @media (min-width: 500px) {
   .protection {
-    padding-bottom: 1rem;
+    padding-bottom: 0.65rem;
+    padding-top: 0.35rem;
   }
 }
-/* ----- */
+/* ------------- */
 article {
   vertical-align: middle;
   border-radius: 5px 5px 5px 5px;
@@ -108,12 +109,24 @@ article {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transition: transform 0.3s;
+  transition: box-shadow 0.3s;
+}
+@media (hover: hover) {
+  article:hover {
+    transform: scale(1.025);
+    box-shadow: 6px 10px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+}
+article:active {
+  transform: scale(0.975);
+  box-shadow: 3px 7px 0 rgba(0, 0, 0, 0.2), 0 5px 9px 0 rgba(0, 0, 0, 0.19);
 }
 article > h1 {
-  background-color: black;
+  background-color: var(--header-card-background);
   font-size: 2.25rem;
   text-align: center;
-  color: rgb(255, 255, 255, 0.87);
+  color: var(--header-card-color);
   padding-bottom: 0.25rem;
   border-radius: 5px 5px 0% 0%;
   cursor: pointer;
@@ -130,6 +143,7 @@ article > img {
   vertical-align: middle;
   object-fit: contain;
   cursor: pointer;
+  filter: var(--modal-recetas-img-filter);
 }
 /*------ modal---- */
 .modal-mask {
@@ -147,29 +161,36 @@ article > img {
 }
 .modal-container {
   position: fixed; /* Stay in place */
+  z-index: 9999;
   left: 5%;
   top: 5%;
   width: 90%;
   height: 90%;
   margin: 0px auto;
-  background-color: #fff;
+  background-color: var(--modal-background);
+  color: var(--modal-color);
   border-radius: 0.5%;
   font-family: Helvetica, Arial, sans-serif;
   overflow: auto; /*Enable scroll if needed*/
   box-shadow: 0px 0px 5px #5688ba;
 }
 /* Vue transition functionality */
-/* .modal-enter {
+.modal-enter-from,
+.modal-leave-to {
+  transform: scale(0);
   opacity: 0;
+}
+.modal-enter-to,
+.modal-leave-from {
+  transform: scale(1);
+  opacity: 1;
+}
+.modal-enter-active {
+  transition: all 0.2s ease-out;
 }
 .modal-leave-active {
-  opacity: 0;
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-} */
 /* El botón para cerrar */
 .cerrar {
   color: #5688ba;
@@ -204,6 +225,7 @@ article > img {
 }
 .modalGrid > img {
   width: 100%;
+  filter: var(--modal-recetas-img-filter);
 }
 .ingredientes {
   margin: 0.75rem 0.4rem 0rem 0.4rem;
@@ -232,8 +254,7 @@ article > img {
   top: 0.55rem;
   width: 1rem;
   height: 1rem;
-  background: url("data:image/svg+xml;utf8,<?xml version='1.0' encoding='utf-8'?><svg width='18' height='18' viewBox='0 0 1792 1792' xmlns='http://www.w3.org/2000/svg'><path d='M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z'/></svg>")
-    no-repeat;
+  background: var(--modal-recetas-check-svg);
 }
 .modalContent {
   margin: 0.5rem 0.4rem 0.4rem 0.4rem;
@@ -263,7 +284,7 @@ article > img {
   content: counter(inst);
   border: 2px solid black;
   background: #5688ba;
-  color: white;
+  color: var(--modal-recetas-numero-white);
   -webkit-text-stroke: black;
   -webkit-text-stroke-width: 0.075rem;
   border-radius: 0.2rem;
@@ -287,7 +308,7 @@ article > img {
   font-weight: 400;
 }
 .modalContent >>> ol > li > p > strong {
-  color: #5688ba;
+  color: var(--modal-recetas-nota-color);
   -webkit-text-stroke: black;
   -webkit-text-stroke-width: 0.025rem;
 }
@@ -310,8 +331,7 @@ article > img {
   top: 0.55rem;
   width: 1rem;
   height: 1rem;
-  background: url("data:image/svg+xml;utf8,<?xml version='1.0' encoding='utf-8'?><svg width='18' height='18' viewBox='0 0 1792 1792' xmlns='http://www.w3.org/2000/svg'><path d='M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z'/></svg>")
-    no-repeat;
+  background: var(--modal-recetas-check-svg);
 }
 .modalContent >>> ol > li > ol {
   list-style: none;
@@ -332,7 +352,7 @@ article > img {
 .modalContent >>> ol > li > ol > li::before {
   content: counter(inst1);
   border: 2px solid black;
-  background: white;
+  background: var(--modal-recetas-numero-white);
   color: #5688ba;
   -webkit-text-stroke: black;
   -webkit-text-stroke-width: 0.075rem;
@@ -363,8 +383,7 @@ article > img {
   top: 0.55rem;
   width: 1rem;
   height: 1rem;
-  background: url("data:image/svg+xml;utf8,<?xml version='1.0' encoding='utf-8'?><svg width='18' height='18' viewBox='0 0 1792 1792' xmlns='http://www.w3.org/2000/svg'><path d='M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z'/></svg>")
-    no-repeat;
+  background: var(--modal-recetas-check-svg);
 }
 .modalContent >>> p {
   text-align: center;
@@ -373,13 +392,12 @@ article > img {
 }
 .modalContent >>> p > a {
   text-decoration: none;
-  border: 0.15rem solid #5688ba;
+  border: 0.15rem solid var(--modal-recetas-referencia-border);
   -webkit-text-stroke: black;
   -webkit-text-stroke-width: 0.05rem;
   font-size: 1.5rem;
   font-weight: bolder;
-  /* background-color: black; */
-  color: #5688ba;
+  color: var(--modal-recetas-referencia-color);
   padding: 0.1rem 1rem;
   border-radius: 500px;
   margin: auto;

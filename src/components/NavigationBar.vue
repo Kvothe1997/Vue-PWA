@@ -2,7 +2,9 @@
   <!-- Menú -->
   <nav>
     <ul class="NavBar" :class="{ sticky: active }" ref="NavBar">
-      <CategoriaSeleccionada :categoria="this.$store.state.categoryName" />
+      <CategoriaSeleccionada
+        :categoria="this.$store.state.searchAndFilter.categoryName"
+      />
       <SearchFilter />
       <MenuHamburguesa @emite="openModalNav" />
     </ul>
@@ -20,7 +22,7 @@ export default {
   data() {
     return {
       showModalNav: false,
-      active: false
+      active: false,
     };
   },
   name: "NavigationBar",
@@ -28,13 +30,16 @@ export default {
     CategoriaSeleccionada,
     SearchFilter,
     MenuHamburguesa,
-    ModalNavegacion
+    ModalNavegacion,
   },
   mounted() {
     let NavBarOffsetTop = this.$refs.NavBar.offsetTop;
-    this.$store.commit("actualizarNavBarOffSetTop", NavBarOffsetTop);
+    this.$store.commit(
+      "stickyNavBar/actualizarNavBarOffSetTop",
+      NavBarOffsetTop
+    );
     let NavBarHeight = this.$refs.NavBar.offsetHeight;
-    this.$store.commit("actualizarNavBarHeight", NavBarHeight);
+    this.$store.commit("stickyNavBar/actualizarNavBarHeight", NavBarHeight);
   },
   methods: {
     openModalNav() {
@@ -42,35 +47,37 @@ export default {
     },
     closeModalNav() {
       (this.showModalNav = false), (document.body.style.overflow = "auto");
-    }
+    },
   },
   watch: {
-    "$store.state.scroll": {
+    "$store.state.reactiveScrollAndResize.scroll": {
       handler() {
-        if (window.pageYOffset >= this.$store.state.NavBarOffSetTop) {
+        if (
+          window.pageYOffset >= this.$store.state.stickyNavBar.NavBarOffSetTop
+        ) {
           this.active = true;
         } else {
           this.active = false;
         }
-      }
+      },
     },
-    "$store.state.resizeHeight": {
+    "$store.state.reactiveScrollAndResize.resizeHeight": {
       handler() {
         let value = document.getElementById("titulo-principal").offsetHeight;
-        this.$store.commit("actualizarNavBarOffSetTop", value);
+        this.$store.commit("stickyNavBar/actualizarNavBarOffSetTop", value);
         let NavBarHeight = this.$refs.NavBar.offsetHeight;
-        this.$store.commit("actualizarNavBarHeight", NavBarHeight);
-      }
+        this.$store.commit("stickyNavBar/actualizarNavBarHeight", NavBarHeight);
+      },
     },
-    "$store.state.resizeWidth": {
+    "$store.state.reactiveScrollAndResize.resizeWidth": {
       handler() {
         let value = document.getElementById("titulo-principal").offsetHeight;
-        this.$store.commit("actualizarNavBarOffSetTop", value);
+        this.$store.commit("stickyNavBar/actualizarNavBarOffSetTop", value);
         let NavBarHeight = this.$refs.NavBar.offsetHeight;
-        this.$store.commit("actualizarNavBarHeight", NavBarHeight);
-      }
-    }
-  }
+        this.$store.commit("stickyNavBar/actualizarNavBarHeight", NavBarHeight);
+      },
+    },
+  },
 };
 </script>
 
@@ -96,5 +103,6 @@ export default {
   top: 0;
   right: 0;
   width: 100%;
+  z-index: 800;
 }
 </style>
