@@ -8,8 +8,9 @@
         <div class="modal-cabecera">
           <h2>Las recetas de Lita</h2>
           <img
-            src="/img/icons/favicon.svg"
-            alt="Símbolo del sitio. Una jarra celeste, dos huevos y un tazón con un batidor."
+            :src="`${faviconURL}`"
+            alt="Símbolo del sitio. Una
+          jarra celeste, dos huevos y un tazón con un batidor."
           />
         </div>
         <ul class="modal-contenido">
@@ -37,8 +38,13 @@
 <script>
 import MedidasEquivalencias from "./MedidasEquivalencias.vue";
 export default {
+  name: "ModalNavegacion",
+  components: {
+    MedidasEquivalencias,
+  },
   data() {
     return {
+      faviconURL: process.env.VUE_APP_FAVICONURL,
       Categories: [
         {
           title: "Todas las recetas",
@@ -54,10 +60,6 @@ export default {
         },
       ],
     };
-  },
-  name: "ModalNavegacion",
-  components: {
-    MedidasEquivalencias,
   },
   props: {
     showModal: {
