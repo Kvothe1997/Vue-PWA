@@ -5,12 +5,11 @@
 <script>
 export default {
   name: "CategoriaSeleccionada",
-  props: {
-    categoria: {
-      type: String,
-      required: true
-    }
-  }
+  computed: {
+    categoria() {
+      return this.$store.state.searchAndFilter.categoryName;
+    },
+  },
 };
 </script>
 

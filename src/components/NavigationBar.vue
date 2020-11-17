@@ -2,9 +2,7 @@
   <!-- Menú -->
   <nav>
     <ul class="NavBar" :class="{ sticky: active }" ref="NavBar">
-      <CategoriaSeleccionada
-        :categoria="this.$store.state.searchAndFilter.categoryName"
-      />
+      <CategoriaSeleccionada />
       <SearchFilter />
       <MenuHamburguesa @emite="openModalNav" />
     </ul>
