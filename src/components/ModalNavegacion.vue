@@ -38,9 +38,16 @@
 <script>
 import MedidasEquivalencias from "./MedidasEquivalencias.vue";
 export default {
+  emits: ["emitecerrar"],
   name: "ModalNavegacion",
   components: {
     MedidasEquivalencias,
+  },
+  props: {
+    showModal: {
+      type: Boolean,
+      required: true,
+    },
   },
   data() {
     return {
@@ -61,13 +68,6 @@ export default {
       ],
     };
   },
-  props: {
-    showModal: {
-      type: Boolean,
-      required: true,
-    },
-  },
-  emits: ["emitecerrar"],
   methods: {
     closeModal() {
       this.$emit("emitecerrar");
@@ -141,8 +141,8 @@ export default {
   background-color: transparent;
   font-size: 3rem;
   font-weight: bold;
-  position: fixed;
-  right: 5.5%;
+  position: absolute;
+  right: 0%;
   margin-top: -0.5rem;
   margin-right: 0.5rem;
   cursor: pointer;

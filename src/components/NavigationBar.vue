@@ -17,12 +17,6 @@ import SearchFilter from "./SearchFilter.vue";
 import MenuHamburguesa from "./MenuHamburguesa.vue";
 
 export default {
-  data() {
-    return {
-      showModalNav: false,
-      active: false,
-    };
-  },
   name: "NavigationBar",
   components: {
     CategoriaSeleccionada,
@@ -30,28 +24,18 @@ export default {
     MenuHamburguesa,
     ModalNavegacion,
   },
-  mounted() {
-    let NavBarOffsetTop = this.$refs.NavBar.offsetTop;
-    this.$store.commit(
-      "stickyNavBar/actualizarNavBarOffSetTop",
-      NavBarOffsetTop
-    );
-    let NavBarHeight = this.$refs.NavBar.offsetHeight;
-    this.$store.commit("stickyNavBar/actualizarNavBarHeight", NavBarHeight);
-  },
-  methods: {
-    openModalNav() {
-      (this.showModalNav = true), (document.body.style.overflow = "hidden");
-    },
-    closeModalNav() {
-      (this.showModalNav = false), (document.body.style.overflow = "auto");
-    },
+  data() {
+    return {
+      showModalNav: false,
+      active: false,
+    };
   },
   watch: {
     "$store.state.reactiveScrollAndResize.scroll": {
       handler() {
         if (
-          window.pageYOffset >= this.$store.state.stickyNavBar.NavBarOffSetTop
+          window.pageYOffset >
+          1 + this.$store.state.stickyNavBar.NavBarOffSetTop
         ) {
           this.active = true;
         } else {
@@ -74,6 +58,23 @@ export default {
         let NavBarHeight = this.$refs.NavBar.offsetHeight;
         this.$store.commit("stickyNavBar/actualizarNavBarHeight", NavBarHeight);
       },
+    },
+  },
+  mounted() {
+    let NavBarOffsetTop = this.$refs.NavBar.offsetTop;
+    this.$store.commit(
+      "stickyNavBar/actualizarNavBarOffSetTop",
+      NavBarOffsetTop
+    );
+    let NavBarHeight = this.$refs.NavBar.offsetHeight;
+    this.$store.commit("stickyNavBar/actualizarNavBarHeight", NavBarHeight);
+  },
+  methods: {
+    openModalNav() {
+      (this.showModalNav = true), (document.body.style.overflow = "hidden");
+    },
+    closeModalNav() {
+      (this.showModalNav = false), (document.body.style.overflow = "auto");
     },
   },
 };

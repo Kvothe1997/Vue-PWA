@@ -138,13 +138,13 @@
 
 <script>
 export default {
+  emits: ["emite"],
+  name: "MedidasEquivalencias",
   data() {
     return {
       showModal: false,
     };
   },
-  name: "MedidasEquivalencias",
-  emits: ["emite"],
   methods: {
     openModal() {
       this.showModal = true;
@@ -215,7 +215,7 @@ export default {
   font-size: 3rem;
   font-weight: bold;
   position: fixed;
-  right: 5.5%;
+  right: 4.99999523162841875%;
   margin-top: -0.5rem;
   margin-right: 0.5rem;
   cursor: pointer;
@@ -230,6 +230,16 @@ export default {
   text-shadow: 0 0 0.25rem #5688ba;
   color: #b7cbdf;
   font-weight: 500;
+}
+@media (min-width: 500px) and (max-width: 900px) {
+  .cerrar {
+    right: 8.3154795441757122211003543782542%;
+  }
+}
+@media (min-width: 900px) {
+  .cerrar {
+    right: 6.898865840349542%;
+  }
 }
 /*---- Modal content-----*/
 .modal-container > h2 {

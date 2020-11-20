@@ -15,7 +15,6 @@
 <script>
 export default {
   name: "SearchFilter",
-
   computed: {
     buscar: {
       get() {

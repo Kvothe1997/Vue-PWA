@@ -15,6 +15,10 @@
 import CardWithModal from "./CardWithModal.vue";
 
 export default {
+  name: "CardsMasonry",
+  components: {
+    CardWithModal,
+  },
   data() {
     return {
       RecetasRendered: [],
@@ -92,45 +96,6 @@ export default {
       ],
     };
   },
-  name: "CardsMasonry",
-  components: {
-    CardWithModal,
-  },
-  methods: {
-    scrollInfinito() {
-      if (
-        this.$refs.cardsContainer.getBoundingClientRect().bottom <
-        window.innerHeight
-      ) {
-        let numeroRecetasFiltradas = this.RecetasFiltradasPorCategoria.length,
-          numeroRecetasRenderizadas = this.RecetasRendered.length,
-          numeroRecetasFaltantes =
-            numeroRecetasFiltradas - numeroRecetasRenderizadas;
-
-        if (numeroRecetasFaltantes !== 0) {
-          let desde = numeroRecetasRenderizadas,
-            hasta = numeroRecetasRenderizadas + 40,
-            recetasToConcat = this.RecetasFiltradasPorCategoria.slice(
-              desde,
-              hasta
-            );
-          console.log(recetasToConcat);
-          this.RecetasRendered = this.RecetasRendered.concat(recetasToConcat);
-          console.log(this.RecetasRendered);
-          console.log(numeroRecetasFaltantes);
-        }
-      }
-    },
-    stickyActivateAddPadding() {
-      if (
-        window.pageYOffset >= this.$store.state.stickyNavBar.NavBarOffSetTop
-      ) {
-        this.$refs.cardsContainer.style.paddingTop = `${this.$store.state.stickyNavBar.NavBarHeight}px`;
-      } else {
-        this.$refs.cardsContainer.style.paddingTop = "0px";
-      }
-    },
-  },
   computed: {
     RecetasFiltradasPorCategoria() {
       return this.RecetasFiltradasPorBuscar.filter((receta) => {
@@ -171,6 +136,42 @@ export default {
         this.scrollInfinito();
         this.stickyActivateAddPadding();
       },
+    },
+  },
+  methods: {
+    scrollInfinito() {
+      if (
+        this.$refs.cardsContainer.getBoundingClientRect().bottom <
+        window.innerHeight
+      ) {
+        let numeroRecetasFiltradas = this.RecetasFiltradasPorCategoria.length,
+          numeroRecetasRenderizadas = this.RecetasRendered.length,
+          numeroRecetasFaltantes =
+            numeroRecetasFiltradas - numeroRecetasRenderizadas;
+
+        if (numeroRecetasFaltantes !== 0) {
+          let desde = numeroRecetasRenderizadas,
+            hasta = numeroRecetasRenderizadas + 40,
+            recetasToConcat = this.RecetasFiltradasPorCategoria.slice(
+              desde,
+              hasta
+            );
+          console.log(recetasToConcat);
+          this.RecetasRendered = this.RecetasRendered.concat(recetasToConcat);
+          console.log(this.RecetasRendered);
+          console.log(numeroRecetasFaltantes);
+        }
+      }
+    },
+    stickyActivateAddPadding() {
+      if (
+        window.pageYOffset >
+        1 + this.$store.state.stickyNavBar.NavBarOffSetTop
+      ) {
+        this.$refs.cardsContainer.style.paddingTop = `${this.$store.state.stickyNavBar.NavBarHeight}px`;
+      } else {
+        this.$refs.cardsContainer.style.paddingTop = "0px";
+      }
     },
   },
 };

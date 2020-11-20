@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "70249d6d8cbc40387ee6",
-    "url": "/Vue-PWA/css/app.322d54bc.css"
+    "revision": "8cfcba39331b343feb41",
+    "url": "/Vue-PWA/css/app.12951488.css"
   },
   {
     "revision": "68ce6dcded0d26e1a70cf2e3b78f5e90",
@@ -64,12 +64,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/img/torta_vainilla.7bfee3eb.webp"
   },
   {
-    "revision": "8d9aff6acb01313ae8feb4e9cc087de3",
+    "revision": "70cb1aa560ac642dfaffeffda6460323",
     "url": "/Vue-PWA/index.html"
   },
   {
-    "revision": "70249d6d8cbc40387ee6",
-    "url": "/Vue-PWA/js/app.78ed48e5.js"
+    "revision": "8cfcba39331b343feb41",
+    "url": "/Vue-PWA/js/app.580fec1c.js"
   },
   {
     "revision": "852aea400d1a19dc9155",

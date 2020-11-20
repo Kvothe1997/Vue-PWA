@@ -9,9 +9,15 @@
 
   <!-- Modal ... -->
   <div v-if="showModal" @click="closeModal" class="modal-mask"></div>
-  <transition name="modal">
+  <transition
+    name="modal"
+    @enter="setCerrarRightPosition"
+    @after-enter="removeCerrarRightPosition"
+  >
     <div v-if="showModal" class="modal-container">
-      <span @click="closeModal" class="cerrar" ontouchstart="">&times;</span>
+      <span @click="closeModal" class="cerrar" ref="cerrar" ontouchstart=""
+        >&times;</span
+      >
       <h2>{{ title }}</h2>
       <div class="modalGrid">
         <img :src="require(`../assets/Images/${imageUrl}`)" :alt="imageAlt" />
@@ -24,13 +30,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      showModal: false,
-      recetaIngredientes: "",
-      recetaContenido: "",
-    };
-  },
   name: "CardWithModal",
   props: {
     title: {
@@ -49,6 +48,13 @@ export default {
       type: String,
       required: true,
     },
+  },
+  data() {
+    return {
+      showModal: false,
+      recetaIngredientes: "",
+      recetaContenido: "",
+    };
   },
   methods: {
     async openModal() {
@@ -80,6 +86,13 @@ export default {
     closeModal() {
       this.showModal = false;
       document.body.style.overflow = "auto";
+      this.setCerrarRightPosition();
+    },
+    setCerrarRightPosition() {
+      this.$refs.cerrar.style.right = "0%";
+    },
+    removeCerrarRightPosition() {
+      this.$refs.cerrar.removeAttribute("style");
     },
   },
 };
@@ -198,7 +211,7 @@ article > img {
   font-size: 3rem;
   font-weight: bold;
   position: fixed;
-  right: 5.5%;
+  right: 4.99999523162841875%;
   margin-top: -0.5rem;
   margin-right: 0.5rem;
   cursor: pointer;
@@ -213,6 +226,16 @@ article > img {
   text-shadow: 0 0 0.25rem #5688ba;
   color: #b7cbdf;
   font-weight: 500;
+}
+@media (min-width: 500px) and (max-width: 900px) {
+  .cerrar {
+    right: 8.3154795441757122211003543782542%;
+  }
+}
+@media (min-width: 900px) {
+  .cerrar {
+    right: 6.898865840349542%;
+  }
 }
 .modal-container > h2 {
   text-align: center;
@@ -410,16 +433,16 @@ article > img {
     padding-right: 3rem;
     padding-bottom: 1rem;
   }
-  #ingredientes {
+  .ingredientes {
     margin: 1rem 0.8rem 0rem 0.8rem;
   }
-  #ingredientes h3 {
+  .ingredientes >>> h3 {
     font-size: 1.75rem;
   }
-  #ingredientes ul {
+  .ingredientes >>> ul {
     font-size: 1.5rem;
   }
-  #ingredientes ul li {
+  .ingredientes >>> ul li {
     margin-bottom: 0;
   }
   .modalGrid > img {
@@ -464,20 +487,20 @@ article > img {
     max-width: 70%;
     margin: auto;
   }
-  #ingredientes {
+  .ingredientes {
     grid-area: b;
     align-self: center;
   }
-  #ingredientes h3 {
+  .ingredientes >>> h3 {
     font-size: 1.75rem;
   }
-  #ingredientes ul {
+  .ingredientes >>> ul {
     font-size: 1.5rem;
   }
-  #ingredientes ul li {
+  .ingredientes >>> ul li {
     margin-bottom: 0;
   }
-  .modalContent >>> {
+  .modalContent {
     grid-area: c;
     margin: 1rem 0.8rem 0.8rem 0.8rem;
     font-size: 1.5rem;

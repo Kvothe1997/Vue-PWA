@@ -12,13 +12,13 @@
 
 <script>
 export default {
-  name: "MenuHamburguesa",
   emits: ["emite"],
+  name: "MenuHamburguesa",
   methods: {
     BotonHamburguesa() {
       this.$emit("emite");
-    }
-  }
+    },
+  },
 };
 </script>
 
