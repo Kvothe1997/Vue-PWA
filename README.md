@@ -1,8 +1,8 @@
 # Vue 3 PWA
 
 This is my first PWA using Vue.js. In this project, I have used technologies such as:
-1. Vue 3 (Options API, v-bind, @, v-if, v-for, v-html, refs, transitions  )
-1. Vuex
+1. Vue 3 (Options API, v-bind, @, v-if, v-for, v-html, refs, emit, transitions  )
+1. Vuex (store, mutations and modules)
 1. Vue CLI and Vue UI
 1. Fontawesome
 1. CSS (Flexbox, multi-column)
