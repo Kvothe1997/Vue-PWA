@@ -2,32 +2,35 @@
   <!-- Menú -->
   <nav>
     <ul class="NavBar" :class="{ sticky: active }" ref="NavBar">
-      <CategoriaSeleccionada />
-      <SearchFilter />
-      <MenuHamburguesa @emite="openModalNav" />
+      <NavigationBarCategoriaSeleccionada />
+      <NavigationBarSearchFilter />
+      <NavigationBarMenuHamburguesa @emite="openModalNav" />
     </ul>
-    <ModalNavegacion :showModal="showModalNav" @emitecerrar="closeModalNav" />
+    <NavigationBarModal
+      @emitecerrar="closeModalNav"
+      :show-modal="showModalNav"
+    />
   </nav>
 </template>
 
 <script>
-import ModalNavegacion from "./ModalNavegacion.vue";
-import CategoriaSeleccionada from "./CategoriaSeleccionada.vue";
-import SearchFilter from "./SearchFilter.vue";
-import MenuHamburguesa from "./MenuHamburguesa.vue";
+import NavigationBarModal from "./NavigationBarModal.vue";
+import NavigationBarCategoriaSeleccionada from "./NavigationBarCategoriaSeleccionada.vue";
+import NavigationBarSearchFilter from "./NavigationBarSearchFilter.vue";
+import NavigationBarMenuHamburguesa from "./NavigationBarMenuHamburguesa.vue";
 
 export default {
   name: "NavigationBar",
   components: {
-    CategoriaSeleccionada,
-    SearchFilter,
-    MenuHamburguesa,
-    ModalNavegacion,
+    NavigationBarCategoriaSeleccionada,
+    NavigationBarSearchFilter,
+    NavigationBarMenuHamburguesa,
+    NavigationBarModal
   },
   data() {
     return {
       showModalNav: false,
-      active: false,
+      active: false
     };
   },
   watch: {
@@ -41,7 +44,7 @@ export default {
         } else {
           this.active = false;
         }
-      },
+      }
     },
     "$store.state.reactiveScrollAndResize.resizeHeight": {
       handler() {
@@ -49,7 +52,7 @@ export default {
         this.$store.commit("stickyNavBar/actualizarNavBarOffSetTop", value);
         let NavBarHeight = this.$refs.NavBar.offsetHeight;
         this.$store.commit("stickyNavBar/actualizarNavBarHeight", NavBarHeight);
-      },
+      }
     },
     "$store.state.reactiveScrollAndResize.resizeWidth": {
       handler() {
@@ -57,8 +60,8 @@ export default {
         this.$store.commit("stickyNavBar/actualizarNavBarOffSetTop", value);
         let NavBarHeight = this.$refs.NavBar.offsetHeight;
         this.$store.commit("stickyNavBar/actualizarNavBarHeight", NavBarHeight);
-      },
-    },
+      }
+    }
   },
   mounted() {
     let NavBarOffsetTop = this.$refs.NavBar.offsetTop;
@@ -75,8 +78,8 @@ export default {
     },
     closeModalNav() {
       (this.showModalNav = false), (document.body.style.overflow = "auto");
-    },
-  },
+    }
+  }
 };
 </script>
 

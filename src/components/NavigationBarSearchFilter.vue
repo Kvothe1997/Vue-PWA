@@ -1,8 +1,8 @@
 <template>
   <li class="searchLi">
     <input
-      type="text"
       v-model="buscar"
+      type="text"
       class="searchTerm"
       placeholder="Búsqueda..."
     />
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "SearchFilter",
+  name: "NavigationBarSearchFilter",
   computed: {
     buscar: {
       get() {
@@ -22,9 +22,9 @@ export default {
       },
       set(value) {
         this.$store.commit("searchAndFilter/actualizarBuscar", value);
-      },
-    },
-  },
+      }
+    }
+  }
 };
 </script>
 

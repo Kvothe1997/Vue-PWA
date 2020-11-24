@@ -1,11 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8cfcba39331b343feb41",
-    "url": "/Vue-PWA/css/app.12951488.css"
-  },
-  {
-    "revision": "68ce6dcded0d26e1a70cf2e3b78f5e90",
-    "url": "/Vue-PWA/img/IMG_0282.68ce6dcd.jpg"
+    "revision": "f63cd9adb5a6d0c077a1",
+    "url": "/Vue-PWA/css/app.3d4700d8.css"
   },
   {
     "revision": "c1e769605e4686003967900cb433dc65",
@@ -32,8 +28,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/img/muffins.13b2bc16.webp"
   },
   {
-    "revision": "bb3dfa322318cb4fdf45a97accfe5cae",
-    "url": "/Vue-PWA/img/pan_molde.bb3dfa32.webp"
+    "revision": "088284875ade4e76764265980c9193ff",
+    "url": "/Vue-PWA/img/pan_molde.08828487.webp"
   },
   {
     "revision": "a8d4446ffe7dbc9a2e3348a63227147d",
@@ -64,16 +60,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/img/torta_vainilla.7bfee3eb.webp"
   },
   {
-    "revision": "70cb1aa560ac642dfaffeffda6460323",
+    "revision": "676f7d93fe705868b1f676f40a41833e",
     "url": "/Vue-PWA/index.html"
   },
   {
-    "revision": "8cfcba39331b343feb41",
-    "url": "/Vue-PWA/js/app.580fec1c.js"
+    "revision": "f63cd9adb5a6d0c077a1",
+    "url": "/Vue-PWA/js/app.70013132.js"
   },
   {
-    "revision": "852aea400d1a19dc9155",
-    "url": "/Vue-PWA/js/chunk-vendors.768e4446.js"
+    "revision": "ff313f50719a9b7a76f2",
+    "url": "/Vue-PWA/js/chunk-vendors.8a57a430.js"
   },
   {
     "revision": "ccd4044ef0509d2cded63a2349d51692",

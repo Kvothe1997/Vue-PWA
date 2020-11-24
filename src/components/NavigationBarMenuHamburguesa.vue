@@ -1,11 +1,7 @@
 <template>
   <li class="MenuHamburguesa">
-    <button type="button" class="plate" @click="BotonHamburguesa">
-      <svg version="1.1" viewBox="0 0 40 30">
-        <path class="line" d="M 0 0 H 40"></path>
-        <path class="line" d="M 0 15 H 40"></path>
-        <path class="line" d="M 0 30 H 40"></path>
-      </svg>
+    <button @click="BotonHamburguesa" type="button" class="plate">
+      <font-awesome-icon :icon="['fas', 'bars']" />
     </button>
   </li>
 </template>
@@ -13,12 +9,12 @@
 <script>
 export default {
   emits: ["emite"],
-  name: "MenuHamburguesa",
+  name: "NavigationBarMenuHamburguesa",
   methods: {
     BotonHamburguesa() {
       this.$emit("emite");
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -34,28 +30,20 @@ export default {
   }
 }
 .plate {
-  height: 2rem;
-  width: 2rem;
+  height: 2.5rem;
+  width: 0rem;
+  padding: 0.15rem 1.2rem 0.15rem 1.2rem;
   display: flex;
+  text-align: center;
   justify-content: center;
-  align-items: center;
   background-color: black;
   border-radius: 5px;
   cursor: pointer;
+  color: #5688ba;
+  font-size: 2.1rem;
 }
 .plate:on-focus {
   outline: none;
   box-shadow: none;
-}
-svg {
-  width: 1.4rem;
-  height: 1.3rem;
-}
-.line {
-  fill: none;
-  stroke: #5688ba;
-  stroke-width: 6px;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
 </style>

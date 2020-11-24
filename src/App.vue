@@ -14,7 +14,7 @@ export default {
   components: {
     CardsMasonry,
     NavigationBar,
-    DarkModeButton,
+    DarkModeButton
   },
   created() {
     // Listener único de scroll, se utiliza para el scroll infinito y el sticky NavigationBar.
@@ -28,10 +28,10 @@ export default {
       let width = window.innerWidth;
       this.$store.commit("reactiveScrollAndResize/actualizarResize", {
         height,
-        width,
+        width
       });
     });
-  },
+  }
 };
 </script>
 
@@ -139,6 +139,7 @@ html {
   --searchBox-color: #5688ba;
   /* Dark Mode Button */
   --darkModeButton-background: #8fc7ff;
+  --darkModeButton-focusOutline-color: black;
   /* Modal*/
   --modal-background: rgba(255, 255, 255, 0.87);
   --modal-color: black;
@@ -168,6 +169,7 @@ html.dark-theme {
   --searchBox-color: #274b6e;
   /* Dark Mode Button */
   --darkModeButton-background: black;
+  --darkModeButton-focusOutline-color: white;
   /* Modal */
   --modal-background: #274b6e;
   --modal-color: rgba(255, 255, 255, 0.77);
@@ -198,6 +200,7 @@ html.dark-theme {
     --searchBox-color: #274b6e;
     /* Dark Mode Button */
     --darkModeButton-background: black;
+    --darkModeButton-focusOutline-color: white;
     /* Modal */
     --modal-background: #274b6e;
     --modal-color: rgba(255, 255, 255, 0.77);
@@ -227,6 +230,7 @@ html.dark-theme {
     --searchBox-color: #5688ba;
     /* Dark Mode Button */
     --darkModeButton-background: #8fc7ff;
+    --darkModeButton-focusOutline-color: black;
     /* Modal*/
     --modal-background: rgba(255, 255, 255, 0.87);
     --modal-color: black;

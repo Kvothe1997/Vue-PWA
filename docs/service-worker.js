@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Vue-PWA/precache-manifest.05992bbdbcd62e35398187194e3b54f8.js"
+  "/Vue-PWA/precache-manifest.e23fc3d9d9116d854a73fab28028df6e.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "lasrecetasdelita"});

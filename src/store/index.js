@@ -7,6 +7,6 @@ export default createStore({
   modules: {
     reactiveScrollAndResize,
     searchAndFilter,
-    stickyNavBar,
-  },
+    stickyNavBar
+  }
 });

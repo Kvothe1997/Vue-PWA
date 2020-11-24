@@ -1,7 +1,12 @@
 <template>
   <!-- Card -->
   <div class="protection">
-    <article ontouchstart="" @click="openModal">
+    <article
+      @click="openModal"
+      @keyup.enter="openModal"
+      tabindex="0"
+      ontouchstart=""
+    >
       <h1>{{ title }}</h1>
       <img :src="require(`../assets/Images/${imageUrl}`)" :alt="imageAlt" />
     </article>
@@ -9,23 +14,36 @@
 
   <!-- Modal ... -->
   <div v-if="showModal" @click="closeModal" class="modal-mask"></div>
-  <transition
-    name="modal"
-    @enter="setCerrarRightPosition"
-    @after-enter="removeCerrarRightPosition"
-  >
-    <div v-if="showModal" class="modal-container">
-      <span @click="closeModal" class="cerrar" ref="cerrar" ontouchstart=""
-        >&times;</span
+  <focus-trap :active="showModal" :escape-deactivates="false">
+    <transition
+      name="modal"
+      @enter="setCerrarRightPosition"
+      @after-enter="removeCerrarRightPosition"
+    >
+      <div
+        v-if="showModal"
+        @keyup.esc="closeModal"
+        class="modal-container"
+        tabindex="-1"
       >
-      <h2>{{ title }}</h2>
-      <div class="modalGrid">
-        <img :src="require(`../assets/Images/${imageUrl}`)" :alt="imageAlt" />
-        <div class="ingredientes" v-html="recetaIngredientes"></div>
-        <div class="modalContent" v-html="recetaContenido"></div>
+        <span
+          @click="closeModal"
+          @keyup.enter="closeModal"
+          ref="cerrar"
+          class="cerrar"
+          ontouchstart=""
+          tabindex="0"
+          >&times;</span
+        >
+        <h2>{{ title }}</h2>
+        <div class="modalGrid">
+          <img :src="require(`../assets/Images/${imageUrl}`)" :alt="imageAlt" />
+          <div class="ingredientes" v-html="recetaIngredientes"></div>
+          <div class="modalContent" v-html="recetaContenido"></div>
+        </div>
       </div>
-    </div>
-  </transition>
+    </transition>
+  </focus-trap>
 </template>
 
 <script>
@@ -34,26 +52,26 @@ export default {
   props: {
     title: {
       type: String,
-      required: true,
+      required: true
     },
     imageUrl: {
       type: String,
-      required: true,
+      required: true
     },
     imageAlt: {
       type: String,
-      required: true,
+      required: true
     },
     recetaUrl: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
       showModal: false,
       recetaIngredientes: "",
-      recetaContenido: "",
+      recetaContenido: ""
     };
   },
   methods: {
@@ -67,12 +85,12 @@ export default {
         //Convierto respuesta a HTMLDocument y luego guardo strings con los pedazos de HTML que necesito:recetaIngredientes y recetaContenido
         [
           this.recetaIngredientes,
-          this.recetaContenido,
+          this.recetaContenido
         ] = await response.text().then(async function(text) {
           let recetaHtml = await parser.parseFromString(text, "text/html");
           return [
             await recetaHtml.getElementById("ingredientes").innerHTML,
-            await recetaHtml.querySelector(".modalContent").innerHTML,
+            await recetaHtml.querySelector(".modalContent").innerHTML
           ];
         });
       } catch (error) {
@@ -93,8 +111,8 @@ export default {
     },
     removeCerrarRightPosition() {
       this.$refs.cerrar.removeAttribute("style");
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -130,6 +148,10 @@ article {
     transform: scale(1.025);
     box-shadow: 6px 10px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.19);
   }
+}
+article:focus {
+  transform: scale(1.025);
+  box-shadow: 6px 10px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.19);
 }
 article:active {
   transform: scale(0.975);
@@ -173,6 +195,7 @@ article > img {
   /* transition: opacity 0.3s ease;  Ajustar transición hacia adentro y ahcia afuer, tal vez en los transition effects.*/
 }
 .modal-container {
+  outline: 0;
   position: fixed; /* Stay in place */
   z-index: 9999;
   left: 5%;
@@ -253,24 +276,24 @@ article > img {
 .ingredientes {
   margin: 0.75rem 0.4rem 0rem 0.4rem;
 }
-.ingredientes >>> h3 {
+.ingredientes ::v-deep(h3) {
   font-weight: 800;
   font-size: 2.5rem;
   margin-bottom: 0.75rem;
 }
-.ingredientes >>> ul {
+.ingredientes ::v-deep(ul) {
   margin-top: 10px;
   list-style: none;
   padding-left: 0;
   font-size: 2.25rem;
   font-weight: 400;
 }
-.ingredientes >>> ul li {
+.ingredientes ::v-deep(ul li) {
   position: relative;
   padding-left: 1.5rem; /* space to preserve indentation on wrap */
   margin-bottom: 1rem;
 }
-.ingredientes >>> ul li:before {
+.ingredientes ::v-deep(ul li:before) {
   content: ""; /* placeholder for the SVG */
   position: absolute;
   left: 0; /* place the SVG at the start of the padding */
@@ -283,17 +306,17 @@ article > img {
   margin: 0.5rem 0.4rem 0.4rem 0.4rem;
   font-size: 2.25rem;
 }
-.modalContent >>> h3 {
+.modalContent ::v-deep(h3) {
   font-weight: 800;
   font-size: 2.5rem;
   margin-bottom: 0.25rem;
 }
-.modalContent >>> ol {
+.modalContent ::v-deep(ol) {
   list-style: none;
   font-weight: 400;
   margin-bottom: 2rem;
 }
-.modalContent >>> ol > li {
+.modalContent ::v-deep(ol > li) {
   list-style-position: inside;
   margin: 0 0 0.5rem 0;
   padding-top: 0.5rem;
@@ -303,7 +326,7 @@ article > img {
   counter-increment: inst;
   text-align: justify;
 }
-.modalContent >>> ol > li::before {
+.modalContent ::v-deep(ol > li::before) {
   content: counter(inst);
   border: 2px solid black;
   background: #5688ba;
@@ -319,10 +342,10 @@ article > img {
   top: 0.8rem;
   position: absolute;
 }
-.modalContent >>> ol > li:nth-child(n + 10) {
+.modalContent ::v-deep(ol > li:nth-child(n + 10)) {
   padding-left: 3rem;
 }
-.modalContent >>> ol > li > p {
+.modalContent ::v-deep(ol > li > p) {
   text-align: justify;
   margin-left: 10%;
   margin-top: 2.5%;
@@ -330,24 +353,24 @@ article > img {
   font-size: 1.75rem;
   font-weight: 400;
 }
-.modalContent >>> ol > li > p > strong {
+.modalContent ::v-deep(ol > li > p > strong) {
   color: var(--modal-recetas-nota-color);
   -webkit-text-stroke: black;
   -webkit-text-stroke-width: 0.025rem;
 }
-.modalContent >>> ol > li > ul {
+.modalContent ::v-deep(ol > li > ul) {
   margin-top: 10px;
   list-style: none;
   padding-left: 0;
   /* font-size: 2.25rem; */
   font-weight: 400;
 }
-.modalContent >>> ol > li > ul > li {
+.modalContent ::v-deep(ol > li > ul > li) {
   position: relative;
   padding-left: 1.5rem; /* space to preserve indentation on wrap */
   margin-bottom: 1rem;
 }
-.modalContent >>> ol > li > ul > li:before {
+.modalContent ::v-deep(ol > li > ul > li:before) {
   content: ""; /* placeholder for the SVG */
   position: absolute;
   left: 0; /* place the SVG at the start of the padding */
@@ -356,13 +379,13 @@ article > img {
   height: 1rem;
   background: var(--modal-recetas-check-svg);
 }
-.modalContent >>> ol > li > ol {
+.modalContent ::v-deep(ol > li > ol) {
   list-style: none;
   font-weight: 400;
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
 }
-.modalContent >>> ol > li > ol > li {
+.modalContent ::v-deep(ol > li > ol > li) {
   list-style-position: inside;
   margin: 0 0 0.5rem 0;
   padding-top: 0.5rem;
@@ -372,7 +395,7 @@ article > img {
   counter-increment: inst1;
   text-align: justify;
 }
-.modalContent >>> ol > li > ol > li::before {
+.modalContent ::v-deep(ol > li > ol > li::before) {
   content: counter(inst1);
   border: 2px solid black;
   background: var(--modal-recetas-numero-white);
@@ -388,18 +411,18 @@ article > img {
   top: 0.8rem;
   position: absolute;
 }
-.modalContent >>> ul {
+.modalContent ::v-deep(ul) {
   margin-top: 0.5rem;
   list-style: none;
   padding-left: 0;
   font-weight: 400;
 }
-.modalContent >>> ul > li {
+.modalContent ::v-deep(ul > li) {
   position: relative;
   padding-left: 1.5rem; /* space to preserve indentation on wrap */
   margin-bottom: 0.15rem;
 }
-.modalContent >>> ul > li::before {
+.modalContent ::v-deep(ul > li::before) {
   content: ""; /* placeholder for the SVG */
   position: absolute;
   left: 0; /* place the SVG at the start of the padding */
@@ -408,12 +431,12 @@ article > img {
   height: 1rem;
   background: var(--modal-recetas-check-svg);
 }
-.modalContent >>> p {
+.modalContent ::v-deep(p) {
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
-.modalContent >>> p > a {
+.modalContent ::v-deep(p > a) {
   text-decoration: none;
   border: 0.15rem solid var(--modal-recetas-referencia-border);
   -webkit-text-stroke: black;
@@ -436,13 +459,13 @@ article > img {
   .ingredientes {
     margin: 1rem 0.8rem 0rem 0.8rem;
   }
-  .ingredientes >>> h3 {
+  .ingredientes ::v-deep(h3) {
     font-size: 1.75rem;
   }
-  .ingredientes >>> ul {
+  .ingredientes ::v-deep(ul) {
     font-size: 1.5rem;
   }
-  .ingredientes >>> ul li {
+  .ingredientes ::v-deep(ul li) {
     margin-bottom: 0;
   }
   .modalGrid > img {
@@ -452,14 +475,14 @@ article > img {
     margin: 1rem 0.8rem 0.8rem 0.8rem;
     font-size: 1.5rem;
   }
-  .modalContent >>> h3 {
+  .modalContent ::v-deep(h3) {
     font-size: 1.75rem;
   }
-  .modalContent >>> ol > li::before {
+  .modalContent ::v-deep(ol > li::before) {
     font-size: 1.5rem;
     top: 0.55rem;
   }
-  .modalContent >>> ol > li > p {
+  .modalContent ::v-deep(ol > li > p) {
     font-size: 1.3rem;
   }
 }
@@ -491,13 +514,13 @@ article > img {
     grid-area: b;
     align-self: center;
   }
-  .ingredientes >>> h3 {
+  .ingredientes ::v-deep(h3) {
     font-size: 1.75rem;
   }
-  .ingredientes >>> ul {
+  .ingredientes ::v-deep(ul) {
     font-size: 1.5rem;
   }
-  .ingredientes >>> ul li {
+  .ingredientes ::v-deep(ul li) {
     margin-bottom: 0;
   }
   .modalContent {
@@ -505,14 +528,14 @@ article > img {
     margin: 1rem 0.8rem 0.8rem 0.8rem;
     font-size: 1.5rem;
   }
-  .modalContent >>> h3 {
+  .modalContent ::v-deep(h3) {
     font-size: 1.75rem;
   }
-  .modalContent >>> ol > li::before {
+  .modalContent ::v-deep(ol > li::before) {
     font-size: 1.5rem;
     top: 0.55rem;
   }
-  .modalContent >>> ol > li > p {
+  .modalContent ::v-deep(ol > li > p) {
     font-size: 1.3rem;
   }
 }

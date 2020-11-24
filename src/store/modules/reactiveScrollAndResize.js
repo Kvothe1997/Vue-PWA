@@ -2,7 +2,7 @@ const state = () => {
   return {
     scroll: "",
     resizeHeight: "",
-    resizeWidth: "",
+    resizeWidth: ""
   };
 };
 
@@ -13,11 +13,11 @@ const mutations = {
   actualizarResize(state, { height, width }) {
     state.resizeHeight = height;
     state.resizeWidth = width;
-  },
+  }
 };
 
 export default {
   namespaced: true,
   state,
-  mutations,
+  mutations
 };

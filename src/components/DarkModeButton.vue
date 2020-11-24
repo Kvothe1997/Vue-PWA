@@ -1,15 +1,15 @@
 <template>
   <!-- Crear un método en setup donde se evalue el local storage o el scheme user preference para poder definir el modo inicial del botón (varaibles dark y lighmode Active) y del data-theme -->
   <button
+    @click="ToggleTheme"
     id="buttonDarkMode"
     class="buttonDarkMode"
     type="button"
-    @click="ToggleTheme"
   >
-    <div class="moon" v-if="darkModeActive">
+    <div v-if="darkModeActive" class="moon">
       <font-awesome-icon :icon="['fas', 'moon']" />
     </div>
-    <div class="sun" v-if="lightModeActive">
+    <div v-if="lightModeActive" class="sun">
       <font-awesome-icon :icon="['fas', 'sun']" />
     </div>
   </button>
@@ -21,25 +21,25 @@ export default {
   data() {
     return {
       darkModeActive: "",
-      lightModeActive: "",
+      lightModeActive: ""
     };
   },
   watch: {
     "$store.state.reactiveScrollAndResize.scroll": {
       handler() {
         this.SetButtonPosition();
-      },
+      }
     },
     "$store.state.reactiveScrollAndResize.resizeHeight": {
       handler() {
         this.SetButtonPosition();
-      },
+      }
     },
     "$store.state.reactiveScrollAndResize.resizeWidth": {
       handler() {
         this.SetButtonPosition();
-      },
-    },
+      }
+    }
   },
   created() {
     const content = document.getElementById("content");
@@ -97,8 +97,8 @@ export default {
         // Update local storage theme variable
         localStorage.setItem("theme", "dark-theme");
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -115,6 +115,9 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: var(--darkModeButton-background);
+}
+.buttonDarkMode:focus {
+  box-shadow: 0 0 2pt 1pt var(--darkModeButton-focusOutline-color);
 }
 .moon {
   background: black;

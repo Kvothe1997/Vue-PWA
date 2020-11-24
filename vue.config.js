@@ -14,19 +14,19 @@ module.exports = {
           src: "./img/icons/maskable_icon.png",
           sizes: "1024x1024",
           type: "image/png",
-          purpose: "maskable",
+          purpose: "maskable"
         },
         {
           src: "./img/icons/android-chrome-192x192.png",
           sizes: "192x192",
-          type: "image/png",
+          type: "image/png"
         },
         {
           src: "./img/icons/android-chrome-512x512.png",
           sizes: "512x512",
-          type: "image/png",
-        },
-      ],
+          type: "image/png"
+        }
+      ]
     },
 
     themeColor: "#ffffff",
@@ -38,9 +38,9 @@ module.exports = {
       favicon32: "./img/icons/favicon-32x32.png",
       favicon16: "./img/icons/favicon-16x16.png",
       appleTouchIcon: "./img/icons/apple-touch-icon.png",
-      msTileImage: null,
+      msTileImage: null
     },
     // configure the workbox plugin
-    workboxPluginMode: "GenerateSW",
-  },
+    workboxPluginMode: "GenerateSW"
+  }
 };

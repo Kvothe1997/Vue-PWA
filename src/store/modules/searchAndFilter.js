@@ -2,7 +2,7 @@ const state = () => {
   return {
     buscar: "",
     categoryName: "Todas las recetas",
-    categoryId: "",
+    categoryId: ""
   };
 };
 
@@ -13,11 +13,11 @@ const mutations = {
   actualizarCategory(state, { name, id }) {
     state.categoryName = name;
     state.categoryId = id;
-  },
+  }
 };
 
 export default {
   namespaced: true,
   state,
-  mutations,
+  mutations
 };

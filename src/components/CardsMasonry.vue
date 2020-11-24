@@ -4,9 +4,9 @@
       v-for="Receta in RecetasRendered"
       :key="Receta.title"
       :title="Receta.title"
-      :imageUrl="Receta.imageUrl"
-      :imageAlt="Receta.imageAlt"
-      :recetaUrl="Receta.recetaUrl"
+      :image-url="Receta.imageUrl"
+      :image-alt="Receta.imageAlt"
+      :receta-url="Receta.recetaUrl"
     />
   </div>
 </template>
@@ -17,7 +17,7 @@ import CardWithModal from "./CardWithModal.vue";
 export default {
   name: "CardsMasonry",
   components: {
-    CardWithModal,
+    CardWithModal
   },
   data() {
     return {
@@ -28,7 +28,7 @@ export default {
           imageUrl: "panqueques.webp",
           imageAlt: "Panqueques caseros sobre un plato blanco.",
           recetaUrl: "./recetas/Panqueques.html",
-          categoria: "Postres",
+          categoria: "Postres"
         },
         {
           title: "Muffins",
@@ -36,7 +36,7 @@ export default {
           imageAlt:
             "6 Muffins caseros de maní y arándanos en una bandeja negra.",
           recetaUrl: "./recetas/Muffins.html",
-          categoria: "Postres",
+          categoria: "Postres"
         },
         {
           title: "Pan de molde",
@@ -44,7 +44,7 @@ export default {
           imageAlt:
             "Pan de molde casero sobre bandeja de metal. A su costado hay un cuchillo con mango blanco.",
           recetaUrl: "./recetas/Pan_molde.html",
-          categoria: "Pan",
+          categoria: "Pan"
         },
         {
           title: "Panqueques de avena",
@@ -52,14 +52,14 @@ export default {
           imageAlt:
             "Pila de panqueques de avena sobre plato blanco. Fondo de mesa de cocina difuminado.",
           recetaUrl: "./recetas/Panqueques_avena.html",
-          categoria: "Postres",
+          categoria: "Postres"
         },
         {
           title: "Pie de maracuyá",
           imageUrl: "pie_maracuya.webp",
           imageAlt: "Pie de maracuyá casero.",
           recetaUrl: "./recetas/Pie_maracuya.html",
-          categoria: "Postres",
+          categoria: "Postres"
         },
         {
           title: "Queque marmoleado",
@@ -67,7 +67,7 @@ export default {
           imageAlt:
             "Queque marmoleado circular con cuchillo y espátula de mango blanco. Todo sobre superficie blanca.",
           recetaUrl: "./recetas/Queque_marmoleado.html",
-          categoria: "Postres",
+          categoria: "Postres"
         },
         {
           title: "Torta selva negra",
@@ -75,7 +75,7 @@ export default {
           imageAlt:
             "Pedazo de torta selva negra sobre plato blanco. Torta selva negra detrás desenfocada. La torta está cubierta de manjar blanco.",
           recetaUrl: "./recetas/Torta_selva_negra.html",
-          categoria: "Postres",
+          categoria: "Postres"
         },
         {
           title: "Torta de vainilla",
@@ -83,7 +83,7 @@ export default {
           imageAlt:
             "Torta de vainilla dorada y con una rajadura en la parte superior sobre una bandeja de metal. En fondo desenfocado hay una refrigeradora y un mueble blanco. En la parte superior izquierda está escrito Torta de vainilla en color mostaza y a su costado, en la parte superior derecha de la imagen, hay un sticker de un pedazo de torta con las palabras Yay, Cake.",
           recetaUrl: "./recetas/Torta_vainilla.html",
-          categoria: "Postres",
+          categoria: "Postres"
         },
         {
           title: "Pie de limón",
@@ -91,26 +91,26 @@ export default {
           imageAlt:
             "Pie de limón sobre bandeja de metal. Fondo borroso de ollas en una cocina. El pie tiene un merengue blanco y la tartaleta es de color mostaza. La imagen tiene un título en color verde que dice Pie de limón. Además, tiene un sticker de un pie humeante y otro sticker con la palabra en inglés 'Cutie pie'",
           recetaUrl: "./recetas/Pie_limon.html",
-          categoria: "Postres",
-        },
-      ],
+          categoria: "Postres"
+        }
+      ]
     };
   },
   computed: {
     RecetasFiltradasPorCategoria() {
-      return this.RecetasFiltradasPorBuscar.filter((receta) => {
+      return this.RecetasFiltradasPorBuscar.filter(receta => {
         return receta.categoria
           .toLowerCase()
           .includes(this.$store.state.searchAndFilter.categoryId.toLowerCase());
       });
     },
     RecetasFiltradasPorBuscar() {
-      return this.Recetas.filter((receta) => {
+      return this.Recetas.filter(receta => {
         return receta.title
           .toLowerCase()
           .includes(this.$store.state.searchAndFilter.buscar.toLowerCase());
       });
-    },
+    }
   },
   watch: {
     RecetasFiltradasPorCategoria: {
@@ -129,14 +129,14 @@ export default {
           }
         });
       },
-      immediate: true,
+      immediate: true
     },
     "$store.state.reactiveScrollAndResize.scroll": {
       handler() {
         this.scrollInfinito();
         this.stickyActivateAddPadding();
-      },
-    },
+      }
+    }
   },
   methods: {
     scrollInfinito() {
@@ -172,8 +172,8 @@ export default {
       } else {
         this.$refs.cardsContainer.style.paddingTop = "0px";
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

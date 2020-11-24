@@ -1,53 +1,69 @@
 <template>
   <!-- Modal ... -->
   <div v-if="showModal" @click="closeModal" class="modal-mask"></div>
-  <transition name="modal">
-    <div v-if="showModal" class="modal-container">
-      <span @click="closeModal" class="cerrar" ontouchstart="">&times;</span>
-      <div class="modal-content-container">
-        <div class="modal-cabecera">
-          <h2>Las recetas de Lita</h2>
-          <img
-            :src="`${faviconURL}`"
-            alt="Símbolo del sitio. Una
+  <focus-trap :active="showModal" :escape-deactivates="false">
+    <transition name="modal">
+      <div
+        v-if="showModal"
+        @keyup.esc="closeModal"
+        class="modal-container"
+        tabindex="-1"
+      >
+        <span
+          @click="closeModal"
+          @keyup.enter="closeModal"
+          class="cerrar"
+          ontouchstart=""
+          tabindex="0"
+          >&times;</span
+        >
+        <div class="modal-content-container">
+          <div class="modal-cabecera">
+            <h2>Las recetas de Lita</h2>
+            <img
+              :src="`${faviconURL}`"
+              alt="Símbolo del sitio. Una
           jarra celeste, dos huevos y un tazón con un batidor."
-          />
+            />
+          </div>
+          <ul class="modal-contenido">
+            <NavigationBarModalMedidasEquivalencias @emite="closeModal" />
+            <li>
+              <span>Categorías:</span>
+              <ul>
+                <li
+                  v-for="(category, index) in Categories"
+                  @click="seleccionarCategoria"
+                  @keyup.enter="seleccionarCategoria"
+                  :key="index"
+                  :data-id="category.id"
+                  ontouchstart=""
+                  tabindex="0"
+                >
+                  {{ category.title }}
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
-        <ul class="modal-contenido">
-          <li><MedidasEquivalencias @emite="closeModal" /></li>
-          <li>
-            <span>Categorías:</span>
-            <ul>
-              <li
-                v-for="(category, index) in Categories"
-                :key="index"
-                :data-id="category.id"
-                @click="seleccionarCategoria"
-                ontouchstart=""
-              >
-                {{ category.title }}
-              </li>
-            </ul>
-          </li>
-        </ul>
       </div>
-    </div>
-  </transition>
+    </transition>
+  </focus-trap>
 </template>
 
 <script>
-import MedidasEquivalencias from "./MedidasEquivalencias.vue";
+import NavigationBarModalMedidasEquivalencias from "./NavigationBarModalMedidasEquivalencias.vue";
 export default {
   emits: ["emitecerrar"],
-  name: "ModalNavegacion",
+  name: "NavigationBarModal",
   components: {
-    MedidasEquivalencias,
+    NavigationBarModalMedidasEquivalencias
   },
   props: {
     showModal: {
       type: Boolean,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
@@ -55,17 +71,17 @@ export default {
       Categories: [
         {
           title: "Todas las recetas",
-          id: "",
+          id: ""
         },
         {
           title: "Postres",
-          id: "Postres",
+          id: "Postres"
         },
         {
           title: "Pan",
-          id: "Pan",
-        },
-      ],
+          id: "Pan"
+        }
+      ]
     };
   },
   methods: {
@@ -77,7 +93,7 @@ export default {
       let id = event.currentTarget.getAttribute("data-id");
       this.$store.commit("searchAndFilter/actualizarCategory", {
         name,
-        id,
+        id
       });
       this.closeModal();
       // Escrolear hasta el borde del NavBar si la altura total del scroll menos el header es mayor a la altura del viewport(ventana: window.innerheight) o hasta top si es menor. Se espera a que se rendericen las cards y luego se ejecuta.
@@ -92,8 +108,8 @@ export default {
           window.scrollTo(0, 0);
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -113,6 +129,7 @@ export default {
   /* transition: opacity 0.3s ease;  Ajustar transición hacia adentro y ahcia afuer, tal vez en los transition effects.*/
 }
 .modal-container {
+  outline: 0;
   position: fixed; /* Stay in place */
   z-index: 9999;
   left: 5%;

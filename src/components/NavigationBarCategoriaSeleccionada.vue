@@ -4,12 +4,12 @@
 
 <script>
 export default {
-  name: "CategoriaSeleccionada",
+  name: "NavigationBarCategoriaSeleccionada",
   computed: {
     categoria() {
       return this.$store.state.searchAndFilter.categoryName;
-    },
-  },
+    }
+  }
 };
 </script>
 

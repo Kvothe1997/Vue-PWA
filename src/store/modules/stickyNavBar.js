@@ -1,7 +1,7 @@
 const state = () => {
   return {
     NavBarOffSetTop: "",
-    NavBarHeight: "",
+    NavBarHeight: ""
   };
 };
 
@@ -11,11 +11,11 @@ const mutations = {
   },
   actualizarNavBarHeight(state, n) {
     state.NavBarHeight = n;
-  },
+  }
 };
 
 export default {
   namespaced: true,
   state,
-  mutations,
+  mutations
 };
