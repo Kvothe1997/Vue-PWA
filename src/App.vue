@@ -31,6 +31,15 @@ export default {
         width
       });
     });
+    //Se escuchan los eventos online y offline. Luego, se mandan a vuex (store) para estar disponibles en todos los componentes.
+    addEventListener("online", () => {
+      let value = true;
+      this.$store.commit("reactiveOnlineStatus/actualizarOnlineStatus", value);
+    });
+    addEventListener("offline", () => {
+      let value = false;
+      this.$store.commit("reactiveOnlineStatus/actualizarOnlineStatus", value);
+    });
   }
 };
 </script>
@@ -134,6 +143,7 @@ html {
   /* Cards */
   --header-card-background: black;
   --header-card-color: rgba(255, 255, 255, 0.87);
+  --offlineText-card-color: rgba(255, 255, 255, 0.87);
   /* SearchBox */
   --searchBox-background: rgba(255, 255, 255, 0.87);
   --searchBox-color: #5688ba;
@@ -151,7 +161,7 @@ html {
   --modal-medidas-table-text-stroke: transparent;
   --modal-medidas-tableBody-color: black;
   /* Modal recetas */
-  --modal-recetas-img-filter: none;
+  --modal-recetas-img-filter: brightness(1) contrast(1);
   --modal-recetas-check-svg: url("data:image/svg+xml;utf8,<?xml version='1.0' encoding='utf-8'?><svg width='18' height='18' viewBox='0 0 1792 1792' xmlns='http://www.w3.org/2000/svg'><path d='M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z'/></svg>")
     no-repeat;
   --modal-recetas-numero-white: rgba(255, 255, 255, 0.87);
@@ -164,6 +174,7 @@ html.dark-theme {
   /* Cards */
   --header-card-background: black;
   --header-card-color: rgba(255, 255, 255, 0.77);
+  --offlineText-card-color: white;
   /* SearchBox */
   --searchBox-background: rgba(255, 255, 255, 0.7);
   --searchBox-color: #274b6e;
@@ -195,6 +206,7 @@ html.dark-theme {
     /* Cards */
     --header-card-background: black;
     --header-card-color: rgba(255, 255, 255, 0.77);
+    --offlineText-card-color: white;
     /* SearchBox */
     --searchBox-background: rgba(255, 255, 255, 0.7);
     --searchBox-color: #274b6e;
@@ -225,6 +237,7 @@ html.dark-theme {
     /* Cards */
     --header-card-background: black;
     --header-card-color: rgba(255, 255, 255, 0.87);
+    --offlineText-card-color: rgba(255, 255, 255, 0.87);
     /* SearchBox */
     --searchBox-background: rgba(255, 255, 255, 0.87);
     --searchBox-color: #5688ba;
@@ -242,7 +255,7 @@ html.dark-theme {
     --modal-medidas-table-text-stroke: transparent;
     --modal-medidas-tableBody-color: black;
     /* Modal recetas */
-    --modal-recetas-img-filter: none;
+    --modal-recetas-img-filter: brightness(1) contrast(1);
     --modal-recetas-check-svg: url("data:image/svg+xml;utf8,<?xml version='1.0' encoding='utf-8'?><svg width='18' height='18' viewBox='0 0 1792 1792' xmlns='http://www.w3.org/2000/svg'><path d='M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z'/></svg>")
       no-repeat;
     --modal-recetas-numero-white: rgba(255, 255, 255, 0.87);

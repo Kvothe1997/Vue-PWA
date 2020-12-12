@@ -2,11 +2,13 @@ import { createStore } from "vuex";
 import reactiveScrollAndResize from "./modules/reactiveScrollAndResize.js";
 import searchAndFilter from "./modules/searchAndFilter.js";
 import stickyNavBar from "./modules/stickyNavBar.js";
+import reactiveOnlineStatus from "./modules/reactiveOnlineStatus.js";
 
 export default createStore({
   modules: {
     reactiveScrollAndResize,
     searchAndFilter,
-    stickyNavBar
+    stickyNavBar,
+    reactiveOnlineStatus
   }
 });

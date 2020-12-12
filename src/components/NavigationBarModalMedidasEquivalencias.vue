@@ -158,8 +158,8 @@
 
 <script>
 export default {
-  emits: ["emite"],
   name: "NavigationBarModalMedidasEquivalencias",
+  emits: ["emite"],
   data() {
     return {
       showModal: false

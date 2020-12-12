@@ -1,6 +1,13 @@
 module.exports = {
-  outputDir: "docs",
-  publicPath: process.env.NODE_ENV === "production" ? "/Vue-PWA/" : "/",
+  // outputDir: process.env.NODE_ENV === "production" ? "docs" : "test",
+  // publicPath:
+  //   process.env.NODE_ENV === "production"
+  //     ? "/Vue-PWA/"
+  //     : process.env.NODE_ENV === "test"
+  //     ? "./"
+  //     : "/",
+  outputDir: process.env.VUE_APP_OUTPUT_DIR,
+  publicPath: process.env.VUE_APP_PUBLIC_PATH,
   pwa: {
     manifestOptions: {
       name: "Las Recetas de Lita",
@@ -41,6 +48,23 @@ module.exports = {
       msTileImage: null
     },
     // configure the workbox plugin
-    workboxPluginMode: "GenerateSW"
+    workboxPluginMode: "GenerateSW",
+    workboxOptions: {
+      exclude: [
+        /img\/[\s\S]*\.webp$/,
+        /recetas\/[\s\S]*\.html$/,
+        /css\/[\s\S]*\.css\.map$/
+      ],
+      runtimeCaching: [
+        {
+          handler: "StaleWhileRevalidate",
+          urlPattern: /img\/[\s\S]*\.webp$/
+        },
+        {
+          handler: "StaleWhileRevalidate",
+          urlPattern: /recetas\/[\s\S]*\.html$/
+        }
+      ]
+    }
   }
 };

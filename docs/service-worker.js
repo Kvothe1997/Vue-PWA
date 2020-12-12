@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Vue-PWA/precache-manifest.e23fc3d9d9116d854a73fab28028df6e.js"
+  "/Vue-PWA/precache-manifest.7b360cc0683a45630ab7b951f83c7cc8.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "lasrecetasdelita"});
@@ -32,3 +32,6 @@ self.addEventListener('message', (event) => {
  */
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+
+workbox.routing.registerRoute(/img\/[\s\S]*\.webp$/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
+workbox.routing.registerRoute(/recetas\/[\s\S]*\.html$/, new workbox.strategies.StaleWhileRevalidate(), 'GET');

@@ -97,18 +97,18 @@ export default {
     };
   },
   computed: {
-    RecetasFiltradasPorCategoria() {
-      return this.RecetasFiltradasPorBuscar.filter(receta => {
-        return receta.categoria
-          .toLowerCase()
-          .includes(this.$store.state.searchAndFilter.categoryId.toLowerCase());
-      });
-    },
     RecetasFiltradasPorBuscar() {
       return this.Recetas.filter(receta => {
         return receta.title
           .toLowerCase()
           .includes(this.$store.state.searchAndFilter.buscar.toLowerCase());
+      });
+    },
+    RecetasFiltradasPorCategoria() {
+      return this.RecetasFiltradasPorBuscar.filter(receta => {
+        return receta.categoria
+          .toLowerCase()
+          .includes(this.$store.state.searchAndFilter.categoryId.toLowerCase());
       });
     }
   },
@@ -139,7 +139,7 @@ export default {
     }
   },
   methods: {
-    scrollInfinito() {
+    async scrollInfinito() {
       if (
         this.$refs.cardsContainer.getBoundingClientRect().bottom <
         window.innerHeight
@@ -156,11 +156,34 @@ export default {
               desde,
               hasta
             );
-          console.log(recetasToConcat);
+          //Aquí se filtran las recetasToConcat que estén cacheadas solo cuando se esté offline
+          recetasToConcat = await this.filterRecetasWithCachedImage(
+            recetasToConcat
+          );
           this.RecetasRendered = this.RecetasRendered.concat(recetasToConcat);
-          console.log(this.RecetasRendered);
-          console.log(numeroRecetasFaltantes);
         }
+      }
+    },
+    async filterRecetasWithCachedImage(recetasToConcat) {
+      if (navigator.onLine === false) {
+        let recetasWithCachedImage = new Array();
+        for (const receta of recetasToConcat) {
+          let cachedImageUrlName = new Request(
+            require(`../assets/Images/${receta.imageUrl}`)
+          ).url;
+          await caches
+            .match(cachedImageUrlName)
+            .then(response => (response ? true : false))
+            .then(imageIsCached => {
+              if (imageIsCached) {
+                //Solo si la imagen está cacheada, se mostrará la card.
+                recetasWithCachedImage.push(receta);
+              }
+            });
+        }
+        return recetasWithCachedImage;
+      } else {
+        return recetasToConcat;
       }
     },
     stickyActivateAddPadding() {

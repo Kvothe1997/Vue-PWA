@@ -8,8 +8,8 @@
 
 <script>
 export default {
-  emits: ["emite"],
   name: "NavigationBarMenuHamburguesa",
+  emits: ["emite"],
   methods: {
     BotonHamburguesa() {
       this.$emit("emite");

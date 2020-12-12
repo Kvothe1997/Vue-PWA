@@ -54,7 +54,6 @@
 <script>
 import NavigationBarModalMedidasEquivalencias from "./NavigationBarModalMedidasEquivalencias.vue";
 export default {
-  emits: ["emitecerrar"],
   name: "NavigationBarModal",
   components: {
     NavigationBarModalMedidasEquivalencias
@@ -65,6 +64,7 @@ export default {
       required: true
     }
   },
+  emits: ["emitecerrar"],
   data() {
     return {
       faviconURL: process.env.VUE_APP_FAVICONURL,
