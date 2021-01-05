@@ -1,42 +1,53 @@
 <template>
-  <NavigationBar />
-  <CardsMasonry />
-  <DarkModeButton />
+  <!-- BlurredBackground solo se activará al routearse a los modales. -->
+  <BlurredBackground />
+  <!-- Este es el router view principal. Renderizarán aquí: Home, CardModal y NavigationBarModal. -->
+  <router-view v-slot="{ Component, route }">
+    <transition :name="route.meta.transition">
+      <keep-alive include="Home">
+        <component :is="Component" />
+      </keep-alive>
+    </transition>
+  </router-view>
 </template>
 
 <script>
-import CardsMasonry from "./components/CardsMasonry.vue";
-import NavigationBar from "./components/NavigationBar.vue";
-import DarkModeButton from "./components/DarkModeButton.vue";
+import BlurredBackground from "./components/BlurredBackground.vue";
 
 export default {
   name: "App",
   components: {
-    CardsMasonry,
-    NavigationBar,
-    DarkModeButton
+    BlurredBackground
   },
   created() {
     // Listener único de scroll, se utiliza para el scroll infinito y el sticky NavigationBar.
-    addEventListener("scroll", () => {
-      let value = window.scrollY;
-      this.$store.commit("reactiveScrollAndResize/actualizarScroll", value);
-    });
+    addEventListener(
+      "scroll",
+      () => {
+        let value = window.scrollY;
+        this.$store.commit("reactiveScrollAndResize/actualizarScroll", value);
+      },
+      { passive: true }
+    );
     // listener de resize, a utilizarse con el sticky navigator. Para calcular pading y altura del h1.
-    addEventListener("resize", () => {
-      let height = window.innerHeight;
-      let width = window.innerWidth;
-      this.$store.commit("reactiveScrollAndResize/actualizarResize", {
-        height,
-        width
-      });
-    });
+    addEventListener(
+      "resize",
+      () => {
+        let height = window.innerHeight;
+        let width = window.innerWidth;
+        this.$store.commit("reactiveScrollAndResize/actualizarResize", {
+          height,
+          width
+        });
+      },
+      { passive: true }
+    );
     //Se escuchan los eventos online y offline. Luego, se mandan a vuex (store) para estar disponibles en todos los componentes.
     addEventListener("online", () => {
       let value = true;
       this.$store.commit("reactiveOnlineStatus/actualizarOnlineStatus", value);
     });
-    addEventListener("offline", () => {
+    addEventListener("offli ne", () => {
       let value = false;
       this.$store.commit("reactiveOnlineStatus/actualizarOnlineStatus", value);
     });
@@ -265,97 +276,42 @@ html.dark-theme {
   }
 }
 /* ---------------------------------------- */
-
 html,
-body {
+body,
+#app {
   height: 100%;
 }
 html {
-  scroll-behavior: smooth;
   background-color: var(--main-background);
 }
-/* ---------footer always on bottom---------- */
-body {
-  display: flex;
-  flex-direction: column;
-}
-.content {
-  flex-grow: 1;
-  position: relative;
-}
-header > h1 {
-  text-align: center;
-  font-size: 4rem;
-  font-weight: bolder;
-  background-color: black;
-  color: #5688ba;
-  padding: 0.01rem 0.01rem;
-}
-footer {
-  flex-shrink: 0; /* Footer on bottom */
-  text-align: center;
-  padding: 10px;
-  background-color: #5688ba;
-  color: black;
-  font-weight: bolder;
-}
 /* ---------------------------------------- */
-footer > div {
-  background: #5688ba;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+/* menu - Vue transition functionality */
+.menu-enter-active {
+  transition: all 0.3s ease-out;
 }
-footer > div > aside {
-  background: #5688ba;
-  flex-basis: 40%;
-  flex-grow: 1;
-  min-width: 300px;
-  margin: 0.5rem;
+.menu-enter-from {
+  transform: translatey(500px);
+  opacity: 0;
 }
-footer > div > aside > h2 {
-  background: #5688ba;
-  font-size: 1.3rem;
-  font-weight: 800;
+.menu-leave-to {
+  opacity: 0;
 }
-footer > div > aside > p {
-  background: #5688ba;
-  font-size: 1rem;
+
+/* cardModal - Vue transition functionality */
+.cardModal-enter-from,
+.cardModal-leave-to {
+  transform: scale(0);
+  opacity: 0;
 }
-footer > div > div {
-  background: #5688ba;
-  flex-basis: 40%;
-  flex-grow: 1;
-  min-width: 300px;
-  margin: 0.5rem;
+.cardModal-enter-to,
+.cardModal-leave-from {
+  transform: scale(1);
+  opacity: 1;
 }
-footer > div > div > a {
-  text-decoration: none;
-  background: #5688ba;
-  margin: 1rem;
-  align-self: right;
+.cardModal-enter-active {
+  transition: all 0.2s ease-out;
 }
-footer > div > div > a > img {
-  width: 2rem;
-  background: #5688ba;
-}
-footer > p {
-  background: #5688ba;
-  font-size: 1.3rem;
-}
-@media (min-width: 500px) {
-  footer > div > aside > h2 {
-    font-size: 1rem;
-  }
-  footer > div > aside > p {
-    font-size: 0.75rem;
-  }
-  footer > div > div > a > img {
-    width: 1.5rem;
-  }
-  footer > p {
-    font-size: 1rem;
-  }
+.cardModal-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
 </style>

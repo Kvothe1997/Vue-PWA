@@ -1,30 +1,13 @@
 <template>
-  <!-- list item -->
-  <li
-    @click="openModal"
-    @keyup.enter="openModal"
-    class="MedidasEquivalencias"
-    ontouchstart=""
-    tabindex="0"
-  >
-    Medidas y equivalencias
-  </li>
-
   <!-- Modal de list item -->
-  <div v-if="showModal" @click="closeModal" class="modal-mask"></div>
-  <focus-trap :active="showModal" :escape-deactivates="false">
+  <focus-trap :active="true" :escape-deactivates="false">
     <transition name="modal">
-      <div
-        v-if="showModal"
-        @keyup.esc="closeModal"
-        class="modal-container"
-        tabindex="-1"
-      >
+      <div @keyup.esc="closeModal" class="modal-container" tabindex="-1">
         <span
+          @touchstart.passive="() => {}"
           @click="closeModal"
           @keyup.enter="closeModal"
           class="cerrar"
-          ontouchstart=""
           tabindex="0"
           >&times;</span
         >
@@ -159,47 +142,19 @@
 <script>
 export default {
   name: "NavigationBarModalMedidasEquivalencias",
-  emits: ["emite"],
-  data() {
-    return {
-      showModal: false
-    };
-  },
   methods: {
-    openModal() {
-      this.showModal = true;
-    },
     closeModal() {
-      this.showModal = false;
-      this.$emit("emite");
+      if (this.$store.state.homeRouteNavigation.homeRoutePath === "") {
+        this.$router.push({ name: "Home" });
+      } else {
+        this.$router.go(-2);
+      }
     }
   }
 };
 </script>
 
 <style scoped>
-/*---- List item style -----*/
-.MedidasEquivalencias {
-  text-align: center;
-  padding: 0.5rem 0;
-  background-color: black;
-  font-weight: bolder;
-  font-size: 1.7rem;
-  color: #5688ba;
-}
-
-@media (hover: hover) {
-  .MedidasEquivalencias:hover {
-    background-color: #5688ba;
-    cursor: pointer;
-    color: black;
-  }
-}
-.MedidasEquivalencias:active {
-  box-shadow: inset 0px 0px 0.3rem black;
-  background-color: #5688ba;
-  color: black;
-}
 /*---- Modal -----*/
 .modal-mask {
   position: fixed;
@@ -212,7 +167,6 @@ export default {
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   display: table;
-  /* transition: opacity 0.3s ease;  Ajustar transición hacia adentro y ahcia afuer, tal vez en los transition effects.*/
 }
 .modal-container {
   outline: 0;

@@ -1,10 +1,13 @@
 <template>
   <div class="cards-container" ref="cardsContainer">
-    <CardWithModal
+    <Card
       v-for="Receta in RecetasRendered"
       :key="Receta.title"
       :title="Receta.title"
+      :receta-index-number="Receta.indexNumber"
       :image-url="Receta.imageUrl"
+      :image-width="Receta.imageWidth"
+      :image-height="Receta.imageHeight"
       :image-alt="Receta.imageAlt"
       :receta-url="Receta.recetaUrl"
     />
@@ -12,93 +15,21 @@
 </template>
 
 <script>
-import CardWithModal from "./CardWithModal.vue";
+import Card from "./Card.vue";
 
 export default {
   name: "CardsMasonry",
   components: {
-    CardWithModal
+    Card
   },
   data() {
     return {
-      RecetasRendered: [],
-      Recetas: [
-        {
-          title: "Panqueques",
-          imageUrl: "panqueques.webp",
-          imageAlt: "Panqueques caseros sobre un plato blanco.",
-          recetaUrl: "./recetas/Panqueques.html",
-          categoria: "Postres"
-        },
-        {
-          title: "Muffins",
-          imageUrl: "muffins.webp",
-          imageAlt:
-            "6 Muffins caseros de maní y arándanos en una bandeja negra.",
-          recetaUrl: "./recetas/Muffins.html",
-          categoria: "Postres"
-        },
-        {
-          title: "Pan de molde",
-          imageUrl: "pan_molde.webp",
-          imageAlt:
-            "Pan de molde casero sobre bandeja de metal. A su costado hay un cuchillo con mango blanco.",
-          recetaUrl: "./recetas/Pan_molde.html",
-          categoria: "Pan"
-        },
-        {
-          title: "Panqueques de avena",
-          imageUrl: "panqueques_avena.webp",
-          imageAlt:
-            "Pila de panqueques de avena sobre plato blanco. Fondo de mesa de cocina difuminado.",
-          recetaUrl: "./recetas/Panqueques_avena.html",
-          categoria: "Postres"
-        },
-        {
-          title: "Pie de maracuyá",
-          imageUrl: "pie_maracuya.webp",
-          imageAlt: "Pie de maracuyá casero.",
-          recetaUrl: "./recetas/Pie_maracuya.html",
-          categoria: "Postres"
-        },
-        {
-          title: "Queque marmoleado",
-          imageUrl: "queque_marmoleado.webp",
-          imageAlt:
-            "Queque marmoleado circular con cuchillo y espátula de mango blanco. Todo sobre superficie blanca.",
-          recetaUrl: "./recetas/Queque_marmoleado.html",
-          categoria: "Postres"
-        },
-        {
-          title: "Torta selva negra",
-          imageUrl: "selva_negra.webp",
-          imageAlt:
-            "Pedazo de torta selva negra sobre plato blanco. Torta selva negra detrás desenfocada. La torta está cubierta de manjar blanco.",
-          recetaUrl: "./recetas/Torta_selva_negra.html",
-          categoria: "Postres"
-        },
-        {
-          title: "Torta de vainilla",
-          imageUrl: "torta_vainilla.webp",
-          imageAlt:
-            "Torta de vainilla dorada y con una rajadura en la parte superior sobre una bandeja de metal. En fondo desenfocado hay una refrigeradora y un mueble blanco. En la parte superior izquierda está escrito Torta de vainilla en color mostaza y a su costado, en la parte superior derecha de la imagen, hay un sticker de un pedazo de torta con las palabras Yay, Cake.",
-          recetaUrl: "./recetas/Torta_vainilla.html",
-          categoria: "Postres"
-        },
-        {
-          title: "Pie de limón",
-          imageUrl: "pie_limon.webp",
-          imageAlt:
-            "Pie de limón sobre bandeja de metal. Fondo borroso de ollas en una cocina. El pie tiene un merengue blanco y la tartaleta es de color mostaza. La imagen tiene un título en color verde que dice Pie de limón. Además, tiene un sticker de un pie humeante y otro sticker con la palabra en inglés 'Cutie pie'",
-          recetaUrl: "./recetas/Pie_limon.html",
-          categoria: "Postres"
-        }
-      ]
+      RecetasRendered: []
     };
   },
   computed: {
     RecetasFiltradasPorBuscar() {
-      return this.Recetas.filter(receta => {
+      return this.$store.state.recetas.Recetas.filter(receta => {
         return receta.title
           .toLowerCase()
           .includes(this.$store.state.searchAndFilter.buscar.toLowerCase());
@@ -116,18 +47,23 @@ export default {
     RecetasFiltradasPorCategoria: {
       handler: function() {
         this.RecetasRendered = this.RecetasFiltradasPorCategoria.slice(0, 40);
-        // Escrolear hasta el borde del NavBar si la altura total del scroll menos el header es mayor a la altura del viewport(ventana: window.innerheight) o hasta top si es menor. Se espera a que se rendericen las cards y luego se ejecuta.
-        this.$nextTick(() => {
-          if (
-            document.body.scrollHeight -
-              this.$store.state.stickyNavBar.NavBarOffSetTop >=
-            window.innerHeight
-          ) {
-            window.scrollTo(0, this.$store.state.stickyNavBar.NavBarOffSetTop);
-          } else {
-            window.scrollTo(0, 0);
-          }
-        });
+        // Escrolear hasta el borde del NavBar si la altura total del scroll menos el header es mayor a la altura del viewport(ventana: window.innerheight) o hasta top si es menor. Se espera a que se rendericen las cards y luego se ejecuta. No se ejecutará cuando sea la primera vez que se ingresa a la ruta de home.
+        if (this.$store.state.homeRouteNavigation.homeRoutePath != "") {
+          this.$nextTick(() => {
+            if (
+              document.body.scrollHeight -
+                this.$store.state.stickyNavBar.NavBarOffSetTop >=
+              window.innerHeight
+            ) {
+              window.scrollTo(
+                0,
+                this.$store.state.stickyNavBar.NavBarOffSetTop
+              );
+            } else {
+              window.scrollTo(0, 0);
+            }
+          });
+        }
       },
       immediate: true
     },

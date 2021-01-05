@@ -2,6 +2,7 @@
 node_modules
 IdeasParaMejorar.txt
 test
+test.js
 
 # local env files
 .env.local

@@ -9,6 +9,27 @@ export default {
     categoria() {
       return this.$store.state.searchAndFilter.categoryName;
     }
+  },
+  activated() {
+    if (this.$router.currentRoute._rawValue.name == "HomeWithCategory") {
+      let indexNumber = this.$router.currentRoute._rawValue.params.indexNumber,
+        name = this.$store.state.searchAndFilter.Categories[indexNumber].title,
+        id = this.$store.state.searchAndFilter.Categories[indexNumber].id;
+      this.$store.commit("searchAndFilter/actualizarCategory", {
+        name,
+        id,
+        indexNumber
+      });
+    } else {
+      let indexNumber = 0,
+        name = this.$store.state.searchAndFilter.Categories[indexNumber].title,
+        id = this.$store.state.searchAndFilter.Categories[indexNumber].id;
+      this.$store.commit("searchAndFilter/actualizarCategory", {
+        name,
+        id,
+        indexNumber
+      });
+    }
   }
 };
 </script>

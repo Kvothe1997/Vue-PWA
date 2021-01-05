@@ -1,13 +1,6 @@
 module.exports = {
-  // outputDir: process.env.NODE_ENV === "production" ? "docs" : "test",
-  // publicPath:
-  //   process.env.NODE_ENV === "production"
-  //     ? "/Vue-PWA/"
-  //     : process.env.NODE_ENV === "test"
-  //     ? "./"
-  //     : "/",
   outputDir: process.env.VUE_APP_OUTPUT_DIR,
-  publicPath: process.env.VUE_APP_PUBLIC_PATH,
+  publicPath: process.env.BASE_URL,
   pwa: {
     manifestOptions: {
       name: "Las Recetas de Lita",
@@ -64,7 +57,11 @@ module.exports = {
           handler: "StaleWhileRevalidate",
           urlPattern: /recetas\/[\s\S]*\.html$/
         }
-      ]
+      ],
+      //Al atualizar los archivos del deploy (docs), el service worker toma el control e intenta limpiar el caché de versiones anteriores.
+      skipWaiting: true,
+      clientsClaim: true,
+      cleanupOutdatedCaches: true
     }
   }
 };

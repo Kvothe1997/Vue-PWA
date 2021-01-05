@@ -4,7 +4,8 @@
       v-model="buscar"
       type="text"
       class="searchTerm"
-      placeholder="Búsqueda..."
+      placeholder="Buscar receta..."
+      aria-label="Buscar receta"
     />
     <div class="searchButton">
       <font-awesome-icon :icon="['fas', 'search']" />

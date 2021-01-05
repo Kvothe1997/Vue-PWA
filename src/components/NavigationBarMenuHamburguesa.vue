@@ -1,6 +1,11 @@
 <template>
   <li class="MenuHamburguesa">
-    <button @click="BotonHamburguesa" type="button" class="plate">
+    <button
+      @click="openModalNav"
+      type="button"
+      class="botonHamburguesa"
+      aria-label="Botón para abrir el menú de navegación"
+    >
       <font-awesome-icon :icon="['fas', 'bars']" />
     </button>
   </li>
@@ -9,10 +14,9 @@
 <script>
 export default {
   name: "NavigationBarMenuHamburguesa",
-  emits: ["emite"],
   methods: {
-    BotonHamburguesa() {
-      this.$emit("emite");
+    openModalNav() {
+      this.$router.push({ name: "NavigationBarModal" });
     }
   }
 };
@@ -29,7 +33,7 @@ export default {
     order: 3;
   }
 }
-.plate {
+.botonHamburguesa {
   height: 2.5rem;
   width: 0rem;
   padding: 0.15rem 1.2rem 0.15rem 1.2rem;
@@ -42,7 +46,7 @@ export default {
   color: #5688ba;
   font-size: 2.1rem;
 }
-.plate:on-focus {
+.botonHamburguesa:on-focus {
   outline: none;
   box-shadow: none;
 }

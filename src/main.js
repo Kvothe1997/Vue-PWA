@@ -24,4 +24,7 @@ app.component("FocusTrap", FocusTrap);
 import store from "./store/index.js";
 app.use(store);
 
+import router from "./router";
+app.use(router);
+
 app.mount("#app");

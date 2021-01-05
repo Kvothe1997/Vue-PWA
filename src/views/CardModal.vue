@@ -1,131 +1,90 @@
 <template>
-  <!-- Card -->
-  <div class="protection">
-    <article
-      :class="{ noClick: offline }"
-      ref="card"
-      @click="openModal"
-      @keyup.enter="openModal"
-      tabindex="0"
-      ontouchstart=""
-      class="card"
-    >
-      <h1>{{ title }}</h1>
-      <figure class="figureContainer">
-        <img
-          :src="require(`../assets/Images/${imageUrl}`)"
-          :alt="imageAlt"
-          class="image"
-          :class="{ imageBlur: offline }"
-        />
-        <p v-if="offline" class="offlineText">
-          <strong>OFFLINE</strong><br />
-          Intente con otra<br />
-          receta
-        </p>
-      </figure>
-    </article>
-  </div>
-
   <!-- Modal ... -->
-  <div v-if="showModal" @click="closeModal" class="modal-mask"></div>
-  <focus-trap :active="showModal" :escape-deactivates="false">
-    <transition
-      name="modal"
-      @enter="setCerrarRightPosition"
-      @after-enter="removeCerrarRightPosition"
-    >
-      <div
-        v-if="showModal"
-        @keyup.esc="closeModal"
-        class="modal-container"
-        tabindex="-1"
+  <focus-trap :active="true" :escape-deactivates="false">
+    <div @keyup.esc="closeModal" class="modal-container" tabindex="-1">
+      <span
+        ref="cerrar"
+        @touchstart.passive="() => {}"
+        @click="closeModal"
+        @keyup.enter="closeModal"
+        class="cerrar"
+        tabindex="0"
+        >&times;</span
       >
-        <span
-          @click="closeModal"
-          @keyup.enter="closeModal"
-          ref="cerrar"
-          class="cerrar"
-          ontouchstart=""
-          tabindex="0"
-          >&times;</span
-        >
-        <h2>{{ title }}</h2>
-        <div class="modalGrid">
-          <img :src="require(`../assets/Images/${imageUrl}`)" :alt="imageAlt" />
-          <div class="ingredientes" v-html="recetaIngredientes"></div>
-          <div class="modalContent" v-html="recetaContenido"></div>
-        </div>
+      <h2>{{ $store.state.recetas.Recetas[indexNumber].title }}</h2>
+      <div class="modalGrid">
+        <img
+          :width="$store.state.recetas.Recetas[indexNumber].imageWidth"
+          :height="$store.state.recetas.Recetas[indexNumber].imageHeight"
+          :src="
+            require(`../assets/Images/${$store.state.recetas.Recetas[indexNumber].imageUrl}`)
+          "
+          :alt="$store.state.recetas.Recetas[indexNumber].imageAlt"
+        />
+        <div
+          v-if="recetaIngredientes"
+          class="ingredientes"
+          v-html="recetaIngredientes"
+        ></div>
+        <div
+          v-if="recetaContenido"
+          class="modalContent"
+          v-html="recetaContenido"
+        ></div>
       </div>
-    </transition>
+    </div>
   </focus-trap>
 </template>
 
 <script>
 export default {
-  name: "CardWithModal",
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
-    imageUrl: {
-      type: String,
-      required: true
-    },
-    imageAlt: {
-      type: String,
-      required: true
-    },
-    recetaUrl: {
-      type: String,
-      required: true
-    }
-  },
+  name: "CardModal",
+  props: ["indexNumber"],
   data() {
     return {
-      showModal: false,
-      recetaIngredientes: "",
-      recetaContenido: "",
-      offline: false
+      recetaIngredientes: null,
+      recetaContenido: null
     };
   },
-  watch: {
-    "$store.state.reactiveOnlineStatus.onlineStatus": {
-      handler(newValue) {
-        this.checkCardOnlineStatus(newValue);
-      }
-    }
+  created() {
+    this.$watch(
+      "this.$route.params",
+      () => {
+        this.openModal();
+      },
+      // fetch the data when the modal is created and the data is
+      // already being observed
+      { immediate: true }
+    );
   },
   mounted() {
-    this.checkCardOnlineStatus(navigator.onLine);
+    document.body.style.overflow = "hidden";
+    this.$store.commit(
+      "blurredBackground/actualizarShowBlurredBackground",
+      true
+    );
+  },
+  unmounted() {
+    this.$store.commit(
+      "blurredBackground/actualizarShowBlurredBackground",
+      false
+    );
+    document.body.style.overflow = "auto";
   },
   methods: {
-    checkCardOnlineStatus(newValue) {
-      if (newValue === true) {
-        //El usuario está online
-        this.offline = false;
-        this.$refs.card.tabindex = 0;
+    closeModal() {
+      if (this.$store.state.homeRouteNavigation.homeRoutePath == "") {
+        this.$router.push({ name: "Home" });
       } else {
-        //El usuario está offline
-        //Se obtiene el url del .html que podría estar cacheado utilizando Request. Luego, se usa la propiedad caches.match y promesas para verificar si el .html está cacheado.
-        let cachedRecetaUrlName = new Request(this.recetaUrl).url;
-        caches
-          .match(cachedRecetaUrlName)
-          .then(response => (response ? true : false))
-          .then(recetaIsCached => {
-            if (!recetaIsCached) {
-              //La variable offline activará el css necesario para desactivar las cards cuyas recetas .html no estén cacheadas.
-              this.offline = true;
-              this.$refs.card.tabindex = -1;
-            }
-          });
+        this.$router.go(-1);
       }
     },
     async openModal() {
-      //Hacemos fetch en la receta para pintar el html del modal y luego abrimos el modal
+      //Hacemos fetch en la receta para pintar el html del modal.
       try {
-        let response = await fetch(this.recetaUrl);
+        let response = await fetch(
+          this.$store.state.recetas.Recetas[this.indexNumber].recetaUrl
+        );
         let parser = new DOMParser();
         if (!response.ok)
           throw { status: response.status, statusText: response.statusText };
@@ -140,122 +99,17 @@ export default {
             await recetaHtml.querySelector(".modalContent").innerHTML
           ];
         });
-        document.body.style.overflow = "hidden";
-        this.showModal = true;
       } catch (error) {
         console.log(error);
         let message = error.statusText || "Ha ocurrido un error";
         console.log(`Error ${error.status} : ${message}`);
       }
-    },
-    closeModal() {
-      this.showModal = false;
-      document.body.style.overflow = "auto";
-      this.setCerrarRightPosition();
-    },
-    setCerrarRightPosition() {
-      this.$refs.cerrar.style.right = "0%";
-    },
-    removeCerrarRightPosition() {
-      this.$refs.cerrar.removeAttribute("style");
     }
   }
 };
 </script>
 
 <style scoped>
-/* --- Masonry: Multicolumn --- */
-.protection {
-  display: block;
-  -webkit-column-break-inside: avoid-column;
-  page-break-inside: avoid-column;
-  break-inside: avoid-column;
-  padding-bottom: 0.75rem;
-  padding-top: 0.75rem;
-}
-@media (min-width: 500px) {
-  .protection {
-    padding-bottom: 0.65rem;
-    padding-top: 0.35rem;
-  }
-}
-/* -------------card-------------- */
-.card {
-  vertical-align: middle;
-  border-radius: 5px 5px 5px 5px;
-  box-shadow: 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transition: transform 0.3s;
-  transition: box-shadow 0.3s;
-}
-@media (hover: hover) {
-  .card:hover {
-    transform: scale(1.025);
-    box-shadow: 6px 10px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-}
-.card:focus {
-  transform: scale(1.025);
-  box-shadow: 6px 10px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.card:active {
-  transform: scale(0.975);
-  box-shadow: 3px 7px 0 rgba(0, 0, 0, 0.2), 0 5px 9px 0 rgba(0, 0, 0, 0.19);
-}
-.card > h1 {
-  background-color: var(--header-card-background);
-  font-size: 2.25rem;
-  text-align: center;
-  color: var(--header-card-color);
-  padding-bottom: 0.25rem;
-  border-radius: 5px 5px 0% 0%;
-  cursor: pointer;
-}
-@media (min-width: 500px) {
-  .card > h1 {
-    font-size: 1.4rem;
-  }
-}
-.figureContainer {
-  height: 100%;
-  width: 100%;
-  border-radius: 0px 0px 1% 1%;
-  vertical-align: middle;
-  object-fit: contain;
-  cursor: pointer;
-  display: relative;
-  filter: var(--modal-recetas-img-filter);
-}
-.image {
-  height: 100%;
-  width: 100%;
-  vertical-align: middle;
-}
-.imageBlur {
-  -webkit-filter: blur(15px); /* Safari 6.0 - 9.0 */
-  filter: blur(15px);
-}
-.offlineText {
-  position: absolute;
-  bottom: 0%;
-  left: 0%;
-  width: 100%;
-  /* color: white; */
-  color: var(--offlineText-card-color);
-  text-align: center;
-  font-size: 2.2rem;
-  background-color: rgba(255, 0, 0, 0.5); /* ; Black w/ opacity */
-}
-@media (min-width: 500px) {
-  .offlineText {
-    font-size: 1.5rem;
-  }
-}
-.noClick {
-  pointer-events: none;
-}
 /*------ modal---- */
 .modal-mask {
   position: fixed;
@@ -285,23 +139,6 @@ export default {
   font-family: Helvetica, Arial, sans-serif;
   overflow: auto; /*Enable scroll if needed*/
   box-shadow: 0px 0px 5px #5688ba;
-}
-/* Vue transition functionality */
-.modal-enter-from,
-.modal-leave-to {
-  transform: scale(0);
-  opacity: 0;
-}
-.modal-enter-to,
-.modal-leave-from {
-  transform: scale(1);
-  opacity: 1;
-}
-.modal-enter-active {
-  transition: all 0.2s ease-out;
-}
-.modal-leave-active {
-  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
 /* El botón para cerrar */
 .cerrar {
@@ -347,6 +184,8 @@ export default {
 }
 .modalGrid > img {
   width: 100%;
+  height: auto;
+  vertical-align: middle;
   filter: var(--modal-recetas-img-filter);
 }
 .ingredientes {

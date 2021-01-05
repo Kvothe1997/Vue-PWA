@@ -1,15 +1,15 @@
 <template>
-  <!-- Crear un método en setup donde se evalue el local storage o el scheme user preference para poder definir el modo inicial del botón (varaibles dark y lighmode Active) y del data-theme -->
   <button
     @click="ToggleTheme"
     id="buttonDarkMode"
     class="buttonDarkMode"
     type="button"
+    aria-label="Botón para alternar entre modo oscuro y claro"
   >
-    <div v-if="darkModeActive" class="moon">
+    <div v-if="darkModeActive" class="moon" aria-label="Modo oscuro activado">
       <font-awesome-icon :icon="['fas', 'moon']" />
     </div>
-    <div v-if="lightModeActive" class="sun">
+    <div v-if="lightModeActive" class="sun" aria-label="Modo claro activado">
       <font-awesome-icon :icon="['fas', 'sun']" />
     </div>
   </button>
@@ -21,31 +21,45 @@ export default {
   data() {
     return {
       darkModeActive: "",
-      lightModeActive: ""
+      lightModeActive: "",
+      content: "",
+      resizeObserver: "",
+      stopScrollWatcher: "",
+      stopHeightWatcher: "",
+      stopWidthWatcher: ""
     };
   },
-  watch: {
-    "$store.state.reactiveScrollAndResize.scroll": {
-      handler() {
+  activated() {
+    //Se inician los watchers de scroll y resize para evitar el error al salir de Home. (En deactivated se elimina el watcher)
+    this.stopScrollWatcher = this.$watch(
+      () => this.$store.state.reactiveScrollAndResize.scroll,
+      () => {
         this.SetButtonPosition();
       }
-    },
-    "$store.state.reactiveScrollAndResize.resizeHeight": {
-      handler() {
+    );
+    this.stopHeightWatcher = this.$watch(
+      () => this.$store.state.reactiveScrollAndResize.resizeHeight,
+      () => {
         this.SetButtonPosition();
       }
-    },
-    "$store.state.reactiveScrollAndResize.resizeWidth": {
-      handler() {
+    );
+    this.stopWidthWatcher = this.$watch(
+      () => this.$store.state.reactiveScrollAndResize.resizeWidth,
+      () => {
         this.SetButtonPosition();
       }
-    }
-  },
-  created() {
-    const content = document.getElementById("content");
-    const resizeObserver = new ResizeObserver(this.SetButtonPosition);
-    resizeObserver.observe(content);
+    );
+    // ---------------------------------------------
+    this.content = document.getElementById("content");
+    this.resizeObserver = new ResizeObserver(this.SetButtonPosition);
+    this.resizeObserver.observe(this.content);
     this.SetInitialButtonState();
+  },
+  deactivated() {
+    this.stopScrollWatcher();
+    this.stopHeightWatcher();
+    this.stopWidthWatcher();
+    this.resizeObserver.unobserve(this.content);
   },
   methods: {
     SetButtonPosition() {
