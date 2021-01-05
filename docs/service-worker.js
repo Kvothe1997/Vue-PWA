@@ -14,16 +14,14 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Vue-PWA/precache-manifest.7b360cc0683a45630ab7b951f83c7cc8.js"
+  "/Vue-PWA/precache-manifest.3f866f00641f3ec2e53887d288658a69.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "lasrecetasdelita"});
 
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
-  }
-});
+workbox.core.skipWaiting();
+
+workbox.core.clientsClaim();
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
@@ -32,6 +30,8 @@ self.addEventListener('message', (event) => {
  */
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+
+workbox.precaching.cleanupOutdatedCaches();
 
 workbox.routing.registerRoute(/img\/[\s\S]*\.webp$/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
 workbox.routing.registerRoute(/recetas\/[\s\S]*\.html$/, new workbox.strategies.StaleWhileRevalidate(), 'GET');

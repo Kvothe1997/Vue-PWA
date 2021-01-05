@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cd6e74434bb40b223da5",
-    "url": "/Vue-PWA/css/app.b8c30325.css"
+    "revision": "67986a0b2bbf0809b806",
+    "url": "/Vue-PWA/css/app.73baad4e.css"
   },
   {
     "revision": "59e86b9faf58fcfa2212e12f435d21d4",
@@ -56,24 +56,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/img/mediaIcons/whatsapp.svg"
   },
   {
-    "revision": "bc38756555566014f45729d6a1cd577f",
+    "revision": "997367c7cc9d2ba4bc72ccddb3fa5e4a",
     "url": "/Vue-PWA/index.html"
   },
   {
-    "revision": "cd6e74434bb40b223da5",
-    "url": "/Vue-PWA/js/app.24555c91.js"
+    "revision": "67986a0b2bbf0809b806",
+    "url": "/Vue-PWA/js/app.83991d02.js"
   },
   {
-    "revision": "cd6e74434bb40b223da5",
-    "url": "/Vue-PWA/js/app.24555c91.js.map"
+    "revision": "67986a0b2bbf0809b806",
+    "url": "/Vue-PWA/js/app.83991d02.js.map"
   },
   {
-    "revision": "c4dd2c26312622f369b9",
-    "url": "/Vue-PWA/js/chunk-vendors.37f5f91b.js"
+    "revision": "1fbe352858f5c3730b3a",
+    "url": "/Vue-PWA/js/chunk-vendors.298fad32.js"
   },
   {
-    "revision": "c4dd2c26312622f369b9",
-    "url": "/Vue-PWA/js/chunk-vendors.37f5f91b.js.map"
+    "revision": "1fbe352858f5c3730b3a",
+    "url": "/Vue-PWA/js/chunk-vendors.298fad32.js.map"
   },
   {
     "revision": "ccd4044ef0509d2cded63a2349d51692",
