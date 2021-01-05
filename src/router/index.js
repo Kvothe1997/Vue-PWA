@@ -6,27 +6,27 @@ import NavigationBarModalMedidasEquivalencias from "../views/NavigationBarModalM
 
 const routes = [
   {
-    path: "/",
+    path: `${process.env.BASE_URL}`,
     name: "Home",
     component: Home,
     meta: { transition: "null" }
   },
   {
-    path: "/categoria/:categoria/:indexNumber(\\d+)",
+    path: `${process.env.BASE_URL}categoria/:categoria/:indexNumber(\\d+)`,
     name: "HomeWithCategory",
     component: Home,
     meta: { transition: "null" },
     props: true
   },
   {
-    path: `/:receta/:indexNumber(\\d+)`,
+    path: `${process.env.BASE_URL}:receta/:indexNumber(\\d+)`,
     name: "CardModal",
     component: CardModal,
     meta: { transition: "cardModal" },
     props: true
   },
   {
-    path: "/menu",
+    path: `${process.env.BASE_URL}menu`,
     name: "NavigationBarModal",
     component: NavigationBarModal,
     meta: { transition: "menu" },

@@ -78,7 +78,7 @@ export default {
   },
   methods: {
     openMedidasyEquivalenciasModal() {
-      this.$router.push("/menu/medidas_y_equivalencias");
+      this.$router.push(`${process.env.BASE_URL}menu/medidas_y_equivalencias`);
     },
     seleccionarCategoria() {
       let name = event.currentTarget.textContent,
