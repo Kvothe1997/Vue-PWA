@@ -1,5 +1,9 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
+    "revision": "6ab5c94259ae2cbb7708a4ef81d1016c",
+    "url": "/Vue-PWA/404.html"
+  },
+  {
     "revision": "2a5bbb1da54b8006ca25",
     "url": "/Vue-PWA/css/app.1709af40.css"
   },
@@ -56,7 +60,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/img/mediaIcons/whatsapp.svg"
   },
   {
-    "revision": "d728f96f4920817b96ea58fa77fcc1fb",
+    "revision": "dcc2877b40e8c73181346beb10f302fb",
     "url": "/Vue-PWA/index.html"
   },
   {
