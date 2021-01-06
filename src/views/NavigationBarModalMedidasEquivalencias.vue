@@ -21,10 +21,10 @@
             </thead>
             <tbody>
               <tr>
-                <td>1 taza = 110 g</td>
+                <td>1 taza = 120 g</td>
               </tr>
               <tr>
-                <td>&frac12; taza = 55 g</td>
+                <td>&frac12; taza = 60 g</td>
               </tr>
               <tr>
                 <td>&frac13; taza = 40 g</td>
@@ -130,6 +130,27 @@
               </tr>
               <tr>
                 <td>1 cucharada = 15 ml</td>
+              </tr>
+            </tbody>
+          </table>
+          <table>
+            <thead>
+              <tr>
+                <th>Levadura</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>L. Seca Instantánea = &frac34; x L. Seca Activa</td>
+              </tr>
+              <tr>
+                <td>L. Seca Instantánea = L. Fresca / 3</td>
+              </tr>
+              <tr>
+                <td>L. Seca Activa = 1 &frac14; L. Seca Instantánea</td>
+              </tr>
+              <tr>
+                <td>L. Seca Activa = L. Fresca / 2.5</td>
               </tr>
             </tbody>
           </table>

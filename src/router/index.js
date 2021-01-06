@@ -1,8 +1,5 @@
 import { createWebHistory, createRouter } from "vue-router";
-import CardModal from "../views/CardModal.vue";
 import Home from "../views/Home.vue";
-import NavigationBarModal from "../views/NavigationBarModal.vue";
-import NavigationBarModalMedidasEquivalencias from "../views/NavigationBarModalMedidasEquivalencias.vue";
 
 const routes = [
   {
@@ -10,6 +7,19 @@ const routes = [
     name: "Home",
     component: Home,
     meta: { transition: "null" }
+  },
+  {
+    path: `${process.env.BASE_URL}menu`,
+    name: "NavigationBarModal",
+    component: () => import("../views/NavigationBarModal.vue"),
+    meta: { transition: "menu" },
+    children: [
+      {
+        path: "medidas_y_equivalencias",
+        component: () =>
+          import("../views/NavigationBarModalMedidasEquivalencias.vue")
+      }
+    ]
   },
   {
     path: `${process.env.BASE_URL}categoria/:categoria/:indexNumber(\\d+)`,
@@ -21,21 +31,14 @@ const routes = [
   {
     path: `${process.env.BASE_URL}:receta/:indexNumber(\\d+)`,
     name: "CardModal",
-    component: CardModal,
+    component: () => import("../views/CardModal.vue"),
     meta: { transition: "cardModal" },
     props: true
   },
   {
-    path: `${process.env.BASE_URL}menu`,
-    name: "NavigationBarModal",
-    component: NavigationBarModal,
-    meta: { transition: "menu" },
-    children: [
-      {
-        path: "medidas_y_equivalencias",
-        component: NavigationBarModalMedidasEquivalencias
-      }
-    ]
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: () => import("../views/NotFound.vue")
   }
 ];
 

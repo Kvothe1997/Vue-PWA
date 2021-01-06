@@ -4,8 +4,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/404.html"
   },
   {
-    "revision": "2a5bbb1da54b8006ca25",
-    "url": "/Vue-PWA/css/app.1709af40.css"
+    "revision": "2d8532d4ab9875e4cccc",
+    "url": "/Vue-PWA/css/app.4c266ec8.css"
+  },
+  {
+    "revision": "658bb2a9f3b3f1be19c8",
+    "url": "/Vue-PWA/css/chunk-193d2464.ecfca1c8.css"
+  },
+  {
+    "revision": "b686e58b5b33063236e1",
+    "url": "/Vue-PWA/css/chunk-4a76e9ca.87eab5c8.css"
+  },
+  {
+    "revision": "79d163b145b5fd105e80",
+    "url": "/Vue-PWA/css/chunk-7d516650.56911f1e.css"
+  },
+  {
+    "revision": "aa85f5b27a34aeca96bd",
+    "url": "/Vue-PWA/css/chunk-85d1770a.ad7f65dc.css"
   },
   {
     "revision": "59e86b9faf58fcfa2212e12f435d21d4",
@@ -60,24 +76,56 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/img/mediaIcons/whatsapp.svg"
   },
   {
-    "revision": "dcc2877b40e8c73181346beb10f302fb",
+    "revision": "72b6a62a93d6fbcbe3ec95016a6d7dc8",
     "url": "/Vue-PWA/index.html"
   },
   {
-    "revision": "2a5bbb1da54b8006ca25",
-    "url": "/Vue-PWA/js/app.3e9c4a44.js"
+    "revision": "2d8532d4ab9875e4cccc",
+    "url": "/Vue-PWA/js/app.613ea699.js"
   },
   {
-    "revision": "2a5bbb1da54b8006ca25",
-    "url": "/Vue-PWA/js/app.3e9c4a44.js.map"
+    "revision": "2d8532d4ab9875e4cccc",
+    "url": "/Vue-PWA/js/app.613ea699.js.map"
   },
   {
-    "revision": "1fbe352858f5c3730b3a",
-    "url": "/Vue-PWA/js/chunk-vendors.298fad32.js"
+    "revision": "658bb2a9f3b3f1be19c8",
+    "url": "/Vue-PWA/js/chunk-193d2464.1ec8f783.js"
   },
   {
-    "revision": "1fbe352858f5c3730b3a",
-    "url": "/Vue-PWA/js/chunk-vendors.298fad32.js.map"
+    "revision": "658bb2a9f3b3f1be19c8",
+    "url": "/Vue-PWA/js/chunk-193d2464.1ec8f783.js.map"
+  },
+  {
+    "revision": "b686e58b5b33063236e1",
+    "url": "/Vue-PWA/js/chunk-4a76e9ca.4e3e5fee.js"
+  },
+  {
+    "revision": "b686e58b5b33063236e1",
+    "url": "/Vue-PWA/js/chunk-4a76e9ca.4e3e5fee.js.map"
+  },
+  {
+    "revision": "79d163b145b5fd105e80",
+    "url": "/Vue-PWA/js/chunk-7d516650.3326e278.js"
+  },
+  {
+    "revision": "79d163b145b5fd105e80",
+    "url": "/Vue-PWA/js/chunk-7d516650.3326e278.js.map"
+  },
+  {
+    "revision": "aa85f5b27a34aeca96bd",
+    "url": "/Vue-PWA/js/chunk-85d1770a.4f9eb7c5.js"
+  },
+  {
+    "revision": "aa85f5b27a34aeca96bd",
+    "url": "/Vue-PWA/js/chunk-85d1770a.4f9eb7c5.js.map"
+  },
+  {
+    "revision": "57f238d340e90135cb80",
+    "url": "/Vue-PWA/js/chunk-vendors.c363b132.js"
+  },
+  {
+    "revision": "57f238d340e90135cb80",
+    "url": "/Vue-PWA/js/chunk-vendors.c363b132.js.map"
   },
   {
     "revision": "ccd4044ef0509d2cded63a2349d51692",
