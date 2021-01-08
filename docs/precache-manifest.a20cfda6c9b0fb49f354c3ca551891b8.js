@@ -4,20 +4,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/404.html"
   },
   {
-    "revision": "2d8532d4ab9875e4cccc",
-    "url": "/Vue-PWA/css/app.4c266ec8.css"
+    "revision": "5ca5901ebdc6aa417a00",
+    "url": "/Vue-PWA/css/app.37d49dc9.css"
   },
   {
     "revision": "658bb2a9f3b3f1be19c8",
     "url": "/Vue-PWA/css/chunk-193d2464.ecfca1c8.css"
   },
   {
-    "revision": "b686e58b5b33063236e1",
-    "url": "/Vue-PWA/css/chunk-4a76e9ca.87eab5c8.css"
+    "revision": "1d94a43468580b9b280f",
+    "url": "/Vue-PWA/css/chunk-3d74eae1.9044e4e0.css"
   },
   {
-    "revision": "79d163b145b5fd105e80",
-    "url": "/Vue-PWA/css/chunk-7d516650.56911f1e.css"
+    "revision": "b686e58b5b33063236e1",
+    "url": "/Vue-PWA/css/chunk-4a76e9ca.87eab5c8.css"
   },
   {
     "revision": "aa85f5b27a34aeca96bd",
@@ -76,16 +76,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/img/mediaIcons/whatsapp.svg"
   },
   {
-    "revision": "72b6a62a93d6fbcbe3ec95016a6d7dc8",
+    "revision": "08bb8b2ba2ece2834af0ac845356d024",
     "url": "/Vue-PWA/index.html"
   },
   {
-    "revision": "2d8532d4ab9875e4cccc",
-    "url": "/Vue-PWA/js/app.613ea699.js"
+    "revision": "5ca5901ebdc6aa417a00",
+    "url": "/Vue-PWA/js/app.8cc39285.js"
   },
   {
-    "revision": "2d8532d4ab9875e4cccc",
-    "url": "/Vue-PWA/js/app.613ea699.js.map"
+    "revision": "5ca5901ebdc6aa417a00",
+    "url": "/Vue-PWA/js/app.8cc39285.js.map"
   },
   {
     "revision": "658bb2a9f3b3f1be19c8",
@@ -96,20 +96,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/js/chunk-193d2464.1ec8f783.js.map"
   },
   {
+    "revision": "1d94a43468580b9b280f",
+    "url": "/Vue-PWA/js/chunk-3d74eae1.92d9ae48.js"
+  },
+  {
+    "revision": "1d94a43468580b9b280f",
+    "url": "/Vue-PWA/js/chunk-3d74eae1.92d9ae48.js.map"
+  },
+  {
     "revision": "b686e58b5b33063236e1",
     "url": "/Vue-PWA/js/chunk-4a76e9ca.4e3e5fee.js"
   },
   {
     "revision": "b686e58b5b33063236e1",
     "url": "/Vue-PWA/js/chunk-4a76e9ca.4e3e5fee.js.map"
-  },
-  {
-    "revision": "79d163b145b5fd105e80",
-    "url": "/Vue-PWA/js/chunk-7d516650.3326e278.js"
-  },
-  {
-    "revision": "79d163b145b5fd105e80",
-    "url": "/Vue-PWA/js/chunk-7d516650.3326e278.js.map"
   },
   {
     "revision": "aa85f5b27a34aeca96bd",

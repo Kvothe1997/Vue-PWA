@@ -46,6 +46,33 @@ export default {
   watch: {
     RecetasFiltradasPorCategoria: {
       handler: function() {
+        //Se actualizan los numerosDeVisitas de cada receta.
+        let numeroVisitas = "";
+        for (let i = 0; i < this.$store.state.recetas.Recetas.length; i++) {
+          numeroVisitas = localStorage.getItem(i);
+          if (numeroVisitas) {
+            this.$store.commit("recetas/actualizarNumeroDeVisitas", {
+              i,
+              numeroVisitas
+            });
+          }
+        }
+        // Ordenamiento de las cards según el número de visitas a cada receta
+        this.RecetasFiltradasPorCategoria.sort(function(a, b) {
+          // equal items sort equally
+          if (a.numeroDeVisitas === b.numeroDeVisitas) {
+            return 0;
+          }
+          //"" sort after anything else
+          else if (a.numeroDeVisitas === "") {
+            return 1;
+          } else if (b.numeroDeVisitas === "") {
+            return -1;
+          }
+          // otherwise, if we're ascending, lowest sorts first
+          return a.numeroDeVisitas < b.numeroDeVisitas ? 1 : -1;
+        });
+        //Se cortan las primeras cards que van a ser mostradas.
         this.RecetasRendered = this.RecetasFiltradasPorCategoria.slice(0, 40);
         // Escrolear hasta el borde del NavBar si la altura total del scroll menos el header es mayor a la altura del viewport(ventana: window.innerheight) o hasta top si es menor. Se espera a que se rendericen las cards y luego se ejecuta. No se ejecutará cuando sea la primera vez que se ingresa a la ruta de home.
         if (this.$store.state.homeRouteNavigation.homeRoutePath != "") {

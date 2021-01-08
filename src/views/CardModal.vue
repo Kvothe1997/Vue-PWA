@@ -63,6 +63,9 @@ export default {
       "blurredBackground/actualizarShowBlurredBackground",
       true
     );
+    //Incrementa o establece en localStorage el númeroDeVisitas a la receta.
+    let value = localStorage.getItem(this.indexNumber);
+    localStorage.setItem(this.indexNumber, ++value);
   },
   unmounted() {
     this.$store.commit(
