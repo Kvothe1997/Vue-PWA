@@ -67,7 +67,7 @@
       </div>
     </div>
     <p>
-      &copy;2020 Luis Enrique Barreto Periche
+      &copy;2024 Luis Enrique Barreto Periche
     </p>
   </footer>
 </template>
