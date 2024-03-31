@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/404.html"
   },
   {
-    "revision": "5ca5901ebdc6aa417a00",
+    "revision": "ee5eea7e38fbdbc1db84",
     "url": "/Vue-PWA/css/app.37d49dc9.css"
   },
   {
@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/css/chunk-193d2464.ecfca1c8.css"
   },
   {
-    "revision": "1d94a43468580b9b280f",
+    "revision": "c66a79c929267c6301ef",
     "url": "/Vue-PWA/css/chunk-3d74eae1.9044e4e0.css"
   },
   {
@@ -52,7 +52,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/img/icons/maskable_icon.png"
   },
   {
-    "revision": "f44f70fca962c00c88dc5e57f60a8583",
+    "revision": "9e38a404091c148a6ffc35a2683dbe1f",
     "url": "/Vue-PWA/img/icons/safari-pinned-tab.svg"
   },
   {
@@ -76,16 +76,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/img/mediaIcons/whatsapp.svg"
   },
   {
-    "revision": "08bb8b2ba2ece2834af0ac845356d024",
+    "revision": "ae0c624cdf312467962b5337eb07f8ed",
     "url": "/Vue-PWA/index.html"
   },
   {
-    "revision": "5ca5901ebdc6aa417a00",
-    "url": "/Vue-PWA/js/app.8cc39285.js"
+    "revision": "ee5eea7e38fbdbc1db84",
+    "url": "/Vue-PWA/js/app.5291bc64.js"
   },
   {
-    "revision": "5ca5901ebdc6aa417a00",
-    "url": "/Vue-PWA/js/app.8cc39285.js.map"
+    "revision": "ee5eea7e38fbdbc1db84",
+    "url": "/Vue-PWA/js/app.5291bc64.js.map"
   },
   {
     "revision": "658bb2a9f3b3f1be19c8",
@@ -96,12 +96,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Vue-PWA/js/chunk-193d2464.1ec8f783.js.map"
   },
   {
-    "revision": "1d94a43468580b9b280f",
-    "url": "/Vue-PWA/js/chunk-3d74eae1.92d9ae48.js"
+    "revision": "c66a79c929267c6301ef",
+    "url": "/Vue-PWA/js/chunk-3d74eae1.baabb225.js"
   },
   {
-    "revision": "1d94a43468580b9b280f",
-    "url": "/Vue-PWA/js/chunk-3d74eae1.92d9ae48.js.map"
+    "revision": "c66a79c929267c6301ef",
+    "url": "/Vue-PWA/js/chunk-3d74eae1.baabb225.js.map"
   },
   {
     "revision": "b686e58b5b33063236e1",
